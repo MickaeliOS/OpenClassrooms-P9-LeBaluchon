@@ -27,7 +27,7 @@ class ExchangeService {
         let amount = URLQueryItem(name: "amount", value: amount)
         
         // Adding parameters
-        var completeUrl = ExchangeService.baseURL.appending(queryItems: [to, from, amount])
+        let completeUrl = ExchangeService.baseURL.appending(queryItems: [to, from, amount])
         var request = URLRequest(url: completeUrl)
         request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
                 

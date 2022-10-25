@@ -11,7 +11,7 @@ struct Exchange: Decodable {
     var success: Bool
     var query: Query
     var info: Info
-    var date: Date
+    var date: String
     var result: Double?
 }
 

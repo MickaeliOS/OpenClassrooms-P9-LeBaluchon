@@ -23,6 +23,6 @@ class FakeResponseData {
     static let responseKO = HTTPURLResponse(url: URL(string: "https://openclassrooms.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
     
     // Error
-    class QuoteError: Error {}
-    static let error = QuoteError()
+    class ExchangeError: Error {}
+    static let error = ExchangeError()
 }

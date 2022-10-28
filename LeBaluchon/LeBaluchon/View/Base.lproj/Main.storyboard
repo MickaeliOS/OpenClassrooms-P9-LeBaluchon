@@ -46,9 +46,9 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpg-M0-Ya0">
-                                        <rect key="frame" x="0.0" y="100.33333333333334" width="71.333333333333329" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="100.33333333333334" width="92.666666666666671" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Result"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="MoneyTo"/>
                                     </button>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Conversion result" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MhW-7U-sgg">
                                         <rect key="frame" x="0.0" y="150.66666666666666" width="390" height="34"/>
@@ -68,10 +68,14 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Calculate">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="formControl:" destination="s0J-pC-cxo" eventType="touchUpInside" id="Pkd-lo-rWq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rK3-oP-adg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="MvI-tM-mef" secondAttribute="bottom" id="1EQ-1e-AGi"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="fJE-vb-xJN" secondAttribute="trailing" id="AtE-zd-lfY"/>
@@ -81,10 +85,24 @@
                             <constraint firstItem="MvI-tM-mef" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="J0U-Hl-JEL"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="RTo-5e-3w5"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="89U-OB-6fl" appends="YES" id="4Qc-ju-WM4"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="exchange" id="epe-Me-YaI"/>
+                    <connections>
+                        <outlet property="MoneyFromText" destination="gaN-LP-P9M" id="8na-do-f5V"/>
+                        <outlet property="moneyFromButton" destination="tfn-s0-EEy" id="WLm-Lk-2bw"/>
+                        <outlet property="moneyToButton" destination="lpg-M0-Ya0" id="Lwr-5v-S1T"/>
+                        <outlet property="moneyToText" destination="MhW-7U-sgg" id="HtQ-WA-HUx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LxM-JO-OZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="89U-OB-6fl">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="s0J-pC-cxo" id="g1U-nU-prl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1704.6153846153845" y="-886.49289099526061"/>
         </scene>

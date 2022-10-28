@@ -23,8 +23,8 @@ final class ExchangeTestsCase: XCTestCase {
         client = ExchangeService(exchangeSession: sessionFake)
         
         // Default values for getExchangeRate()
-        to = "USD"
         from = "EUR"
+        to = "USD"
         amount = "200"
     }
     
@@ -39,11 +39,13 @@ final class ExchangeTestsCase: XCTestCase {
         setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getExchangeRate(to: to, from: from, amount: amount) { success, result in
+        client.getExchangeRate(from: from, to: to, amount: amount) { success, result, error  in
             XCTAssertTrue(success)
             
             // 202.761 is the exchange rate result i'm expected
             XCTAssertEqual(202.761, result)
+            
+            XCTAssertNil(error)
             
             expectation.fulfill()
         }
@@ -59,9 +61,10 @@ final class ExchangeTestsCase: XCTestCase {
         setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getExchangeRate(to: to, from: from, amount: amount) { success, result in
+        client.getExchangeRate(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         
@@ -79,9 +82,10 @@ final class ExchangeTestsCase: XCTestCase {
         setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getExchangeRate(to: to, from: from, amount: amount) { success, result in
+        client.getExchangeRate(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         
@@ -98,9 +102,10 @@ final class ExchangeTestsCase: XCTestCase {
         setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getExchangeRate(to: to, from: from, amount: amount) { success, result in
+        client.getExchangeRate(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
+            XCTAssertNotNil(error)
             expectation.fulfill()
         }
         
@@ -118,9 +123,10 @@ final class ExchangeTestsCase: XCTestCase {
         setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getExchangeRate(to: to, from: from, amount: amount) { success, result in
+        client.getExchangeRate(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         

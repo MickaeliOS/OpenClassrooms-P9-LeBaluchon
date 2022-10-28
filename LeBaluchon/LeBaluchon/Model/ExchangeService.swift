@@ -20,10 +20,10 @@ class ExchangeService {
         self.exchangeSession = exchangeSession
     }
     
-    func getExchangeRate(to: String, from: String, amount: String, callback: @escaping (Bool, Double?) -> Void) {
+    func getExchangeRate(from: String, to: String, amount: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
         // We prepare the parameters to be added at our baseUrl
-        let to = URLQueryItem(name: "to", value: to)
         let from = URLQueryItem(name: "from", value: from)
+        let to = URLQueryItem(name: "to", value: to)
         let amount = URLQueryItem(name: "amount", value: amount)
         
         // Adding parameters
@@ -37,22 +37,21 @@ class ExchangeService {
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    callback(false, nil)
+                    callback(false, nil, error)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    callback(false, nil)
+                    callback(false, nil, nil)
                     return
                 }
                 
                 guard let responseJSON = try? JSONDecoder().decode(Exchange.self, from: data),
                       let result = responseJSON.result else {
-                    callback(false, nil)
+                    callback(false, nil, nil)
                     return
                 }
-                callback(true, result)
-                print(result)
+                callback(true, result, nil)
             }
         }
         task?.resume()

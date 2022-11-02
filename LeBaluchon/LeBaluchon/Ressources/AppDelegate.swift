@@ -8,6 +8,8 @@
 // Weather : <a href="https://www.flaticon.com/free-icons/weather" title="weather icons">Weather icons created by kosonicon - Flaticon</a>
 // Translate : <a href="https://www.flaticon.com/fr/icones-gratuites/traduction" title="traduction icônes">Traduction icônes créées par Freepik - Flaticon</a>
 // Exchange : <a href="https://www.flaticon.com/free-icons/convert" title="convert icons">Convert icons created by NewsIcons - Flaticon</a>
+// US Flag : https://www.freeflagicons.com/country/united_states_of_america/round_icon/
+// EU Flag : https://www.freeflagicons.com/country/european_union/round_icon/
 
 // w3KstM52K0o1fGMtkNfRJn1cmB0Mbt5p
 

@@ -11,8 +11,9 @@ class ExchangeService {
     // Singleton
     static var shared = ExchangeService()
     private init() {}
-    
-    private static let baseURL = URL(string: "https://api.apilayer.com/fixer/convert")!
+
+    // API configuration
+    private static let baseURL = URL(string: "https://api.apilayer.com/fixer")!
     private var task: URLSessionDataTask?
     private var exchangeSession = URLSession(configuration: .default)
     
@@ -27,7 +28,8 @@ class ExchangeService {
         let amount = URLQueryItem(name: "amount", value: amount)
         
         // Adding parameters
-        let completeUrl = ExchangeService.baseURL.appending(queryItems: [to, from, amount])
+        var completeUrl = ExchangeService.baseURL.appending(path: "/convert")
+        completeUrl = completeUrl.appending(queryItems: [to, from, amount])
         var request = URLRequest(url: completeUrl)
         request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
                 
@@ -46,7 +48,7 @@ class ExchangeService {
                     return
                 }
                 
-                guard let responseJSON = try? JSONDecoder().decode(Exchange.self, from: data),
+                guard let responseJSON = try? JSONDecoder().decode(ExchangeResponse.self, from: data),
                       let result = responseJSON.result else {
                     callback(false, nil, nil)
                     return
@@ -56,4 +58,70 @@ class ExchangeService {
         }
         task?.resume()
     }
+    
+    func getLatestChangeRate(from: String, to: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
+        // Base = the three-letter currency code of your preferred base currency
+        // Symbols = the output currency
+        let base = URLQueryItem(name: "base", value: from)
+        let symbols = URLQueryItem(name: "symbols", value: to)
+        
+        var completeUrl = ExchangeService.baseURL.appending(path: "/latest")
+        completeUrl = completeUrl.appending(queryItems: [base, symbols])
+        var request = URLRequest(url: completeUrl)
+        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        
+        task?.cancel()
+        task = exchangeSession.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    callback(false, nil, error)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    callback(false, nil, nil)
+                    return
+                }
+                
+                guard let responseJSON = try? JSONDecoder().decode(LatestChangeRateResponse.self, from: data),
+                      let rates = responseJSON.rates else {
+                    callback(false, nil, nil)
+                    return
+                }
+                
+                callback(true, rates[to], nil)
+            }
+        }
+        task?.resume()
+    }
+    
+    /* func getSymbols(callback: @escaping (Bool, [String]?, Error?) -> Void) {
+        let completeUrl = ExchangeService.baseURL.appending(path: "/symbols")
+        var request = URLRequest(url: completeUrl)
+        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        
+        task?.cancel()
+        
+        task = exchangeSession.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    callback(false, nil, error)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    callback(false, nil, nil)
+                    return
+                }
+                
+                guard let responseJSON = try? JSONDecoder().decode(SymbolsResponse.self, from: data),
+                      let result = responseJSON.symbols else {
+                    callback(false, nil, nil)
+                    return
+                }
+                callback(true, result, nil)
+            }
+        }
+        task?.resume()
+    } */
 }

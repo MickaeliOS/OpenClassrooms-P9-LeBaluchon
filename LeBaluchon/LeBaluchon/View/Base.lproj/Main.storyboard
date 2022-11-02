@@ -33,25 +33,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fJE-vb-xJN">
-                                <rect key="frame" x="0.0" y="46.999999999999986" width="390" height="184.66666666666663"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="212"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfn-s0-EEy">
-                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="MoneyFrom"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNK-im-yRy">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.66666666666667" height="48"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="european_union_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="sZP-I2-fQJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfn-s0-EEy">
+                                                <rect key="frame" x="64" y="0.0" width="58.666666666666657" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Euro"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Currency you want to convert" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaN-LP-P9M">
-                                        <rect key="frame" x="0.0" y="50.333333333333329" width="390" height="34"/>
+                                        <rect key="frame" x="0.0" y="64" width="390" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="s0J-pC-cxo" id="ppt-UP-6UZ"/>
+                                        </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpg-M0-Ya0">
-                                        <rect key="frame" x="0.0" y="100.33333333333334" width="92.666666666666671" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="MoneyTo"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adg-Fi-Oet">
+                                        <rect key="frame" x="0.0" y="114" width="132.33333333333334" height="48"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="united_states_of_america_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="lGm-ko-kPC">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpg-M0-Ya0">
+                                                <rect key="frame" x="63.999999999999993" y="0.0" width="68.333333333333314" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Dollar"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Conversion result" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MhW-7U-sgg">
-                                        <rect key="frame" x="0.0" y="150.66666666666666" width="390" height="34"/>
+                                        <rect key="frame" x="0.0" y="178" width="390" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -61,29 +80,106 @@
                                     <constraint firstAttribute="trailing" secondItem="gaN-LP-P9M" secondAttribute="trailing" id="ocg-9r-a0O"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rate Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nH-Mi-S26">
+                                <rect key="frame" x="0.0" y="319" width="390" height="21.666666666666686"/>
+                                <color key="backgroundColor" systemColor="tintColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvI-tM-mef">
-                                <rect key="frame" x="0.0" y="711" width="390" height="50"/>
+                                <rect key="frame" x="30" y="681" width="330" height="50"/>
                                 <color key="backgroundColor" systemColor="tintColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Calculate">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="formControl:" destination="s0J-pC-cxo" eventType="touchUpInside" id="Pkd-lo-rWq"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YPh-dJ-RlB">
+                                <rect key="frame" x="0.0" y="420.66666666666669" width="390" height="116.00000000000006"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ct9-AN-hMj">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="48"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="european_union_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="I3L-AP-rrq">
+                                                <rect key="frame" x="0.0" y="0.0" width="91.666666666666671" height="48"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 EUR" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3j-LI-wCf">
+                                                <rect key="frame" x="91.666666666666671" y="0.0" width="63.333333333333329" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1Q-O9-2GA">
+                                                <rect key="frame" x="155" y="0.0" width="26" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="united_states_of_america_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-jS-ikB">
+                                                <rect key="frame" x="181" y="0.0" width="91.666666666666686" height="48"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RateResult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGy-20-gkh">
+                                                <rect key="frame" x="272.66666666666669" y="0.0" width="117.33333333333331" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="g6j-tZ-eRq">
+                                        <rect key="frame" x="0.0" y="68" width="390" height="48"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="united_states_of_america_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="f0i-HE-XY6">
+                                                <rect key="frame" x="0.0" y="0.0" width="91" height="48"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwR-Y4-UtO">
+                                                <rect key="frame" x="91" y="0.0" width="66" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jF-xQ-pto">
+                                                <rect key="frame" x="157" y="0.0" width="25.333333333333343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="european_union_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="DnP-oS-HGf">
+                                                <rect key="frame" x="182.33333333333334" y="0.0" width="91.000000000000028" height="48"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RateResult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MS-09-IOn">
+                                                <rect key="frame" x="273.33333333333331" y="0.0" width="116.66666666666669" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rK3-oP-adg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="MvI-tM-mef" secondAttribute="bottom" id="1EQ-1e-AGi"/>
+                            <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="MvI-tM-mef" secondAttribute="bottom" constant="30" id="1EQ-1e-AGi"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="fJE-vb-xJN" secondAttribute="trailing" id="AtE-zd-lfY"/>
-                            <constraint firstItem="MvI-tM-mef" firstAttribute="trailing" secondItem="rK3-oP-adg" secondAttribute="trailing" id="Dhn-Ng-3ET"/>
+                            <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="YPh-dJ-RlB" secondAttribute="trailing" id="Bj8-zC-uFM"/>
+                            <constraint firstItem="YPh-dJ-RlB" firstAttribute="top" secondItem="8nH-Mi-S26" secondAttribute="bottom" constant="80" id="Bnr-hK-98R"/>
+                            <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="MvI-tM-mef" secondAttribute="trailing" constant="30" id="E1f-2F-vi3"/>
+                            <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="8nH-Mi-S26" secondAttribute="trailing" id="G2b-7j-zBQ"/>
+                            <constraint firstItem="YPh-dJ-RlB" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="G5T-eR-HAT"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="top" secondItem="rK3-oP-adg" secondAttribute="top" id="HZL-SL-pRJ"/>
                             <constraint firstItem="MvI-tM-mef" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.07" id="Idq-k3-a5T"/>
-                            <constraint firstItem="MvI-tM-mef" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="J0U-Hl-JEL"/>
+                            <constraint firstItem="8nH-Mi-S26" firstAttribute="top" secondItem="fJE-vb-xJN" secondAttribute="bottom" constant="60" id="LaN-qJ-343"/>
+                            <constraint firstItem="8nH-Mi-S26" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="O7N-4I-33A"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" id="RTo-5e-3w5"/>
+                            <constraint firstItem="MvI-tM-mef" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" constant="30" id="YUC-yR-I2e"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="89U-OB-6fl" appends="YES" id="4Qc-ju-WM4"/>
@@ -91,8 +187,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="exchange" id="epe-Me-YaI"/>
                     <connections>
-                        <outlet property="MoneyFromText" destination="gaN-LP-P9M" id="8na-do-f5V"/>
+                        <outlet property="calculateButton" destination="MvI-tM-mef" id="oFt-0g-qP5"/>
+                        <outlet property="exchangeRateDataLabel" destination="8nH-Mi-S26" id="TmX-JB-DFq"/>
                         <outlet property="moneyFromButton" destination="tfn-s0-EEy" id="WLm-Lk-2bw"/>
+                        <outlet property="moneyFromText" destination="gaN-LP-P9M" id="zam-Jt-WFb"/>
                         <outlet property="moneyToButton" destination="lpg-M0-Ya0" id="Lwr-5v-S1T"/>
                         <outlet property="moneyToText" destination="MhW-7U-sgg" id="HtQ-WA-HUx"/>
                     </connections>
@@ -143,8 +241,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="european_union_round_icon_64" width="64" height="48"/>
         <image name="exchange" width="25" height="25"/>
         <image name="translate" width="25" height="25"/>
+        <image name="united_states_of_america_round_icon_64" width="64" height="48"/>
         <image name="weather" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -11,19 +11,23 @@ class ExchangeVC: UIViewController {
     // Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        // setupCurrencySymbols()
+        setupInterface()
     }
     
     // Outlets
     @IBOutlet weak var moneyFromButton: UIButton!
-    @IBOutlet weak var MoneyFromText: UITextField!
+    @IBOutlet weak var moneyFromText: UITextField!
     @IBOutlet weak var moneyToButton: UIButton!
     @IBOutlet weak var moneyToText: UITextField!
+    @IBOutlet weak var exchangeRateDataLabel: UILabel!
+    @IBOutlet weak var calculateButton: UIButton!
     
     // Actions
     @IBAction func formControl(_ sender: Any) {
         /*let from = moneyFromButton.titleLabel!.text!
         let to = moneyToButton.titleLabel!.text!*/
-        let amount = MoneyFromText.text
+        let amount = moneyFromText.text
 
         guard let amount = amount else {
             presentAlert(with: "Please fill a currency you want to convert.")
@@ -34,7 +38,7 @@ class ExchangeVC: UIViewController {
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
-        MoneyFromText.resignFirstResponder()
+        moneyFromText.resignFirstResponder()
     }
     
     // Private functions
@@ -60,9 +64,30 @@ class ExchangeVC: UIViewController {
         }
     }
     
-    private func setupCurrencySymbols() {
-        // To Do :
-        // Appel de l'API pour obtenir la liste des symboles tels que : EUR, USD, etc.
-        // Ensuite, afficher par défaut en titre des boutons, EUR pour from, et USD pour to.
+    /* private func setupCurrencySymbols() {
+        ExchangeService.shared.getSymbols { success, result, error in
+            if error != nil {
+                self.presentAlert(with: error!.localizedDescription)
+                return
+            }
+            
+            guard let result = result, success == true else {
+                return
+            }
+            
+            self.moneyToText.text = "\(result)"
+            // Success est à false, regarde si c'est bon niveau appel
+        }
+    } */
+    
+    private func setupInterface() {
+        calculateButton.layer.cornerRadius = 20
+    }
+}
+
+extension ExchangeVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        moneyFromText.resignFirstResponder()
+        return true
     }
 }

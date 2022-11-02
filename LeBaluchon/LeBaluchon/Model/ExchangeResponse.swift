@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exchange: Decodable {
+struct ExchangeResponse: Decodable {
     var success: Bool
     var query: Query
     var info: Info

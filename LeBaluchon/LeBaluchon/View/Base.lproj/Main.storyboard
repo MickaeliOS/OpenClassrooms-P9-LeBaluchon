@@ -188,11 +188,13 @@
                     <tabBarItem key="tabBarItem" title="" image="exchange" id="epe-Me-YaI"/>
                     <connections>
                         <outlet property="calculateButton" destination="MvI-tM-mef" id="oFt-0g-qP5"/>
+                        <outlet property="eurToUsdLabel" destination="bGy-20-gkh" id="4la-dX-Aoh"/>
                         <outlet property="exchangeRateDataLabel" destination="8nH-Mi-S26" id="TmX-JB-DFq"/>
                         <outlet property="moneyFromButton" destination="tfn-s0-EEy" id="WLm-Lk-2bw"/>
                         <outlet property="moneyFromText" destination="gaN-LP-P9M" id="zam-Jt-WFb"/>
                         <outlet property="moneyToButton" destination="lpg-M0-Ya0" id="Lwr-5v-S1T"/>
                         <outlet property="moneyToText" destination="MhW-7U-sgg" id="HtQ-WA-HUx"/>
+                        <outlet property="usdToEurLabel" destination="5MS-09-IOn" id="mXQ-g8-uhI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LxM-JO-OZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

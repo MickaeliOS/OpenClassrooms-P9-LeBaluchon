@@ -13,6 +13,7 @@ class ExchangeVC: UIViewController {
         super.viewDidLoad()
         // setupCurrencySymbols()
         setupInterface()
+        getLatestChangeRates()
     }
     
     // Outlets
@@ -22,6 +23,8 @@ class ExchangeVC: UIViewController {
     @IBOutlet weak var moneyToText: UITextField!
     @IBOutlet weak var exchangeRateDataLabel: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
+    @IBOutlet weak var eurToUsdLabel: UILabel!
+    @IBOutlet weak var usdToEurLabel: UILabel!
     
     // Actions
     @IBAction func formControl(_ sender: Any) {
@@ -61,6 +64,37 @@ class ExchangeVC: UIViewController {
             }
             
             self.moneyToText.text = "\(result)"
+        }
+    }
+    
+    private func getLatestChangeRates() {
+        
+        // EUR to USD
+        ExchangeService.shared.getLatestChangeRate(from: "EUR", to: "USD") { success, result, error in
+            if error != nil {
+                self.presentAlert(with: error!.localizedDescription)
+                return
+            }
+            
+            guard let result = result, success == true else {
+                return
+            }
+            
+            self.eurToUsdLabel.text = "\(result)"
+        }
+        
+        // USD to EUR
+        ExchangeService.shared.getLatestChangeRate(from: "USD", to: "EUR") { success, result, error in
+            if error != nil {
+                self.presentAlert(with: error!.localizedDescription)
+                return
+            }
+            
+            guard let result = result, success == true else {
+                return
+            }
+            
+            self.usdToEurLabel.text = "\(result)"
         }
     }
     

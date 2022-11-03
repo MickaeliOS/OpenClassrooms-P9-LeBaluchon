@@ -26,12 +26,7 @@ class ExchangeService {
         let from = URLQueryItem(name: "from", value: from)
         let to = URLQueryItem(name: "to", value: to)
         let amount = URLQueryItem(name: "amount", value: amount)
-        
-        // Adding parameters
-        var completeUrl = ExchangeService.baseURL.appending(path: "/convert")
-        completeUrl = completeUrl.appending(queryItems: [to, from, amount])
-        var request = URLRequest(url: completeUrl)
-        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        let request = getCompleteRequest(endPoints: "/convert", parameters: [to, from, amount])
                 
         task?.cancel()
         task = exchangeSession.dataTask(with: request) { data, response, error in
@@ -64,13 +59,12 @@ class ExchangeService {
         // Symbols = the output currency
         let base = URLQueryItem(name: "base", value: from)
         let symbols = URLQueryItem(name: "symbols", value: to)
+        let request = getCompleteRequest(endPoints: "/latest", parameters: [base, symbols])
         
-        var completeUrl = ExchangeService.baseURL.appending(path: "/latest")
-        completeUrl = completeUrl.appending(queryItems: [base, symbols])
-        var request = URLRequest(url: completeUrl)
-        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
-        
-        task?.cancel()
+        // task?.cancel()
+        // Dans le controller, on appelle deux fois cette fonction
+        // Pourquoi ça marche sachant qu'on enlève task?.cancel() ?
+        // C'est à dire que task va être écrasée par le deuxième appel mais les deux appels fonctionnent très bien
         task = exchangeSession.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
@@ -92,7 +86,17 @@ class ExchangeService {
                 callback(true, rates[to], nil)
             }
         }
+        // print(task)
         task?.resume()
+    }
+    
+    private func getCompleteRequest(endPoints: String, parameters: [URLQueryItem]) -> URLRequest {
+        var completeUrl = ExchangeService.baseURL.appending(path: endPoints)
+        completeUrl = completeUrl.appending(queryItems: parameters)
+        var request = URLRequest(url: completeUrl)
+        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        
+        return request
     }
     
     /* func getSymbols(callback: @escaping (Bool, [String]?, Error?) -> Void) {

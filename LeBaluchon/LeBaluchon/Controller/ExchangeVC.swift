@@ -11,7 +11,6 @@ class ExchangeVC: UIViewController {
     // Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        // setupCurrencySymbols()
         setupInterface()
         getLatestChangeRates()
     }
@@ -53,7 +52,7 @@ class ExchangeVC: UIViewController {
     }
     
     private func calculateExchangeRate(from: String, to: String, amount: String) {
-        ExchangeService.shared.getExchangeRate(from: from, to: to, amount: amount) { success, result, error in
+        ExchangeService.shared.convert(from: from, to: to, amount: amount) { success, result, error in
             if error != nil {
                 self.presentAlert(with: error!.localizedDescription)
                 return
@@ -97,22 +96,6 @@ class ExchangeVC: UIViewController {
             self.usdToEurLabel.text = "\(result)"
         }
     }
-    
-    /* private func setupCurrencySymbols() {
-        ExchangeService.shared.getSymbols { success, result, error in
-            if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
-                return
-            }
-            
-            guard let result = result, success == true else {
-                return
-            }
-            
-            self.moneyToText.text = "\(result)"
-            // Success est à false, regarde si c'est bon niveau appel
-        }
-    } */
     
     private func setupInterface() {
         calculateButton.layer.cornerRadius = 20

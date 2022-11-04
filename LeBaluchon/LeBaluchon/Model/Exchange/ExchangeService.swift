@@ -21,7 +21,7 @@ class ExchangeService {
         self.exchangeSession = exchangeSession
     }
     
-    func getExchangeRate(from: String, to: String, amount: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
+    func convert(from: String, to: String, amount: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
         // We prepare the parameters to be added at our baseUrl
         let from = URLQueryItem(name: "from", value: from)
         let to = URLQueryItem(name: "to", value: to)
@@ -43,7 +43,7 @@ class ExchangeService {
                     return
                 }
                 
-                guard let responseJSON = try? JSONDecoder().decode(ExchangeResponse.self, from: data),
+                guard let responseJSON = try? JSONDecoder().decode(ConvertResponse.self, from: data),
                       let result = responseJSON.result else {
                     callback(false, nil, nil)
                     return

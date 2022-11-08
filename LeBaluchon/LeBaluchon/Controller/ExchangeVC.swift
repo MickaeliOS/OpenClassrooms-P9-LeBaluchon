@@ -16,11 +16,8 @@ class ExchangeVC: UIViewController {
     }
     
     // Outlets
-    @IBOutlet weak var moneyFromButton: UIButton!
     @IBOutlet weak var moneyFromText: UITextField!
-    @IBOutlet weak var moneyToButton: UIButton!
     @IBOutlet weak var moneyToText: UITextField!
-    @IBOutlet weak var exchangeRateDataLabel: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var eurToUsdLabel: UILabel!
     @IBOutlet weak var usdToEurLabel: UILabel!
@@ -79,7 +76,7 @@ class ExchangeVC: UIViewController {
                 return
             }
             
-            self.eurToUsdLabel.text = "\(result)"
+            self.eurToUsdLabel.text = "1 EUR = \(result) USD"
         }
         
         // USD to EUR
@@ -93,7 +90,7 @@ class ExchangeVC: UIViewController {
                 return
             }
             
-            self.usdToEurLabel.text = "\(result)"
+            self.usdToEurLabel.text = "1 USD = \(result) EUR"
         }
     }
     

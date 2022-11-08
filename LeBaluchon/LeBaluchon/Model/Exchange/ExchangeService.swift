@@ -13,7 +13,7 @@ class ExchangeService {
     private init() {}
 
     // API configuration
-    private static let baseURL = URL(string: "https://api.apilayer.com/fixer")!
+    private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!
     private var task: URLSessionDataTask?
     private var exchangeSession = URLSession(configuration: .default)
     
@@ -91,9 +91,11 @@ class ExchangeService {
     }
     
     private func getCompleteRequest(endPoints: String, parameters: [URLQueryItem]) -> URLRequest {
-        var completeUrl = ExchangeService.baseURL.appending(path: endPoints)
-        completeUrl = completeUrl.appending(queryItems: parameters)
-        var request = URLRequest(url: completeUrl)
+        var completeUrl = ExchangeService.baseURL
+        completeUrl.path.append(endPoints)
+        completeUrl.queryItems = parameters
+        print(completeUrl)
+        var request = URLRequest(url: completeUrl.url!)
         request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
         
         return request

@@ -96,7 +96,7 @@ class ExchangeService {
         completeUrl.queryItems = parameters
         print(completeUrl)
         var request = URLRequest(url: completeUrl.url!)
-        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        request.addValue(APIKeys.apiLayerKey.rawValue, forHTTPHeaderField: "apikey")
         
         return request
     }
@@ -104,7 +104,7 @@ class ExchangeService {
     /* func getSymbols(callback: @escaping (Bool, [String]?, Error?) -> Void) {
         let completeUrl = ExchangeService.baseURL.appending(path: "/symbols")
         var request = URLRequest(url: completeUrl)
-        request.addValue(APIKeys.ApiLayerKey.rawValue, forHTTPHeaderField: "apikey")
+        request.addValue(APIKeys.apiLayerKey.rawValue, forHTTPHeaderField: "apikey")
         
         task?.cancel()
         

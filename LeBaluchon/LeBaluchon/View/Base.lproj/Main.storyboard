@@ -9,19 +9,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--TraductionVC-->
         <scene sceneID="Oew-Ns-3Lr">
             <objects>
-                <viewController id="j4e-mR-xLL" sceneMemberID="viewController">
+                <viewController id="j4e-mR-xLL" customClass="TraductionVC" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="unL-A5-CZk">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="f" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-my-bMv">
+                                <rect key="frame" x="75" y="186" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="j4e-mR-xLL" id="4rp-Ne-YPC"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0E-MG-7kH">
+                                <rect key="frame" x="149" y="685" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Translate"/>
+                                <connections>
+                                    <action selector="translateButton:" destination="j4e-mR-xLL" eventType="touchUpInside" id="CAv-k0-a4C"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="result" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIH-V4-F00">
+                                <rect key="frame" x="76" y="430" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="is5-Gb-94r"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WnR-bd-w0B" appends="YES" id="xKM-W7-adO"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="translate" id="fUF-dX-54p"/>
+                    <connections>
+                        <outlet property="sourceTextView" destination="ImU-my-bMv" id="aWU-Y7-pZK"/>
+                        <outlet property="translatedTextView" destination="WIH-V4-F00" id="xWJ-zL-DRz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hx-sL-Bjc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WnR-bd-w0B">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="j4e-mR-xLL" id="eEl-Rk-ck6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1705" y="-157"/>
         </scene>
@@ -196,6 +239,9 @@
         <image name="translate" width="25" height="25"/>
         <image name="united_states_of_america_round_icon_64" width="64" height="48"/>
         <image name="weather" width="25" height="25"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

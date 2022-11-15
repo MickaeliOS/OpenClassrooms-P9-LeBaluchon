@@ -13,7 +13,8 @@ class TraductionService {
     private init() {}
 
     // API configuration
-    private static let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2")!
+    // The Google Translation API need to get his API Key in the URL, we can't pass it from the Header
+    private static let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(APIKeys.googleTranslationKey.rawValue)")!
     private var task: URLSessionDataTask?
     private var traductionSession = URLSession(configuration: .default)
     
@@ -22,19 +23,7 @@ class TraductionService {
     }
     
     func getTraduction(source: String, target: String, text: String, callback: @escaping (Bool, String?, Error?) -> Void) {
-        var request = URLRequest(url: TraductionService.baseURL)
-        request.httpMethod = "POST"
-        
-        let body = """
-            {
-              "q": "\(text)",
-              "source": "\(source)",
-              "target": "\(target)",
-              "format": "text"
-            }
-        """
-        request.httpBody = body.data(using: .utf8)
-        print(request)
+        let request = getCompleteRequest(source: source, target: target, text: text)
         task?.cancel()
         
         task = traductionSession.dataTask(with: request, completionHandler: { data, response, error in
@@ -43,7 +32,7 @@ class TraductionService {
                     callback(false, nil, error)
                     return
                 }
-                
+
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     callback(false, nil, nil)
                     return
@@ -59,5 +48,27 @@ class TraductionService {
             }
         })
         task?.resume()
+    }
+    
+    private func getCompleteRequest(source: String, target: String, text: String) -> URLRequest {
+        var request = URLRequest(url: TraductionService.baseURL)
+        request.httpMethod = "POST"
+        
+        // The request's body is a JSON and we need the good format
+        let jsonBody = ["q": "\(text)",
+                        "source": "\(source)",
+                        "target": "\(target)",
+                        "format": "text"]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: jsonBody, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+                
+        // Since the body is a JSON, we need the request to accept this format
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        return request
     }
 }

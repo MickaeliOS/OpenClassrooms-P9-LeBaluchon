@@ -10,6 +10,8 @@
 // Exchange : <a href="https://www.flaticon.com/free-icons/convert" title="convert icons">Convert icons created by NewsIcons - Flaticon</a>
 // US Flag : https://www.freeflagicons.com/country/united_states_of_america/round_icon/
 // EU Flag : https://www.freeflagicons.com/country/european_union/round_icon/
+// FR Flag : https://www.freeflagicons.com/country/france/round_icon/
+// Exchange arrows : https://www.veryicon.com/icons/miscellaneous/smarteditor/exchange-13.html
 
 // w3KstM52K0o1fGMtkNfRJn1cmB0Mbt5p
 

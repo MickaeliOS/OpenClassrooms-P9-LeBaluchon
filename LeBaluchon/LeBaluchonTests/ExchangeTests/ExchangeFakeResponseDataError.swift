@@ -1,5 +1,5 @@
 //
-//  FakeResponseDataError.swift
+//  ExchangeFakeResponseDataError.swift
 //  LeBaluchonTests
 //
 //  Created by Mickaël Horn on 25/10/2022.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class FakeResponseDataError {
+class ExchangeFakeResponseDataError {
     // Data - convert()
     static var convertCorrectData: Data {
-        let bundle = Bundle(for: FakeResponseDataError.self)
+        let bundle = Bundle(for: ExchangeFakeResponseDataError.self)
         let url = bundle.url(forResource: "Convert", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
@@ -18,7 +18,7 @@ class FakeResponseDataError {
     
     // Data - latestExchangeRate()
     static var latestExchangeRateCorrectData: Data {
-        let bundle = Bundle(for: FakeResponseDataError.self)
+        let bundle = Bundle(for: ExchangeFakeResponseDataError.self)
         let url = bundle.url(forResource: "LatestChangeRate", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data

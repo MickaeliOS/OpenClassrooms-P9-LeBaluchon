@@ -44,8 +44,7 @@ class URLSessionDataTaskFake: URLSessionDataTask {
 
 final class MockURLProtocol: URLProtocol {
     
-    // We return true in order to allow URLSession to use this
-    // protocol for any URL Request
+    // We return true in order to allow URLSession to use this protocol for any URL Request
     override class func canInit(with request: URLRequest) -> Bool {
         return true
     }

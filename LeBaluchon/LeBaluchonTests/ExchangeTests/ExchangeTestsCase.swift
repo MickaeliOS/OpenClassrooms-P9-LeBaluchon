@@ -5,8 +5,8 @@
 //  Created by Mickaël Horn on 25/10/2022.
 //
 
-@testable import LeBaluchon
 import XCTest
+@testable import LeBaluchon
 
 final class ExchangeTestsCase: XCTestCase {
     var sessionFake: URLSession!
@@ -26,8 +26,8 @@ final class ExchangeTestsCase: XCTestCase {
     // MARK: - convert() tests
     
     func testDataFetchedSuccessfully() {
-        let dataFake = FakeResponseDataError.convertCorrectData
-        let responseFake = FakeResponseDataError.responseOK
+        let dataFake = ExchangeFakeResponseDataError.convertCorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, dataFake, nil)
@@ -37,9 +37,11 @@ final class ExchangeTestsCase: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error  in
+            XCTAssertTrue(success)
+            
             // 202.761 is the exchange rate result i'm expected
             XCTAssertEqual(result, 202.761)
-            XCTAssertTrue(success)
+            
             XCTAssertNil(error)
             
             expectation.fulfill()
@@ -67,8 +69,8 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testConvertShouldPostFailedCallbackIfIncorrectResponse() {
-        let dataFake = FakeResponseDataError.convertCorrectData
-        let responseFake = FakeResponseDataError.responseKO
+        let dataFake = ExchangeFakeResponseDataError.convertCorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, dataFake, nil)
@@ -88,7 +90,7 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testConvertShouldPostFailedCallbackIfError() {
-        let errorFake = FakeResponseDataError.error
+        let errorFake = ExchangeFakeResponseDataError.error
         
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
@@ -108,8 +110,8 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testConvertShouldPostFailedCallbackIfIncorrectData() {
-        let incorrectDataFake = FakeResponseDataError.incorrectData
-        let responseFake = FakeResponseDataError.responseOK
+        let incorrectDataFake = ExchangeFakeResponseDataError.incorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, incorrectDataFake, nil)
@@ -131,8 +133,8 @@ final class ExchangeTestsCase: XCTestCase {
     // MARK: - getLatestChangeRate() tests
     
     func testLatestChangeRateFetchedSuccessfully() {
-        let dataFake = FakeResponseDataError.latestExchangeRateCorrectData
-        let responseFake = FakeResponseDataError.responseOK
+        let dataFake = ExchangeFakeResponseDataError.latestExchangeRateCorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, dataFake, nil)
@@ -154,7 +156,7 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testLatestChangeRateShouldPostFailedCallbackIfNoData() {
-        let errorFake = FakeResponseDataError.error
+        let errorFake = ExchangeFakeResponseDataError.error
 
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
@@ -174,8 +176,8 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testLatestChangeRateShouldPostFailedCallbackIfIncorrectResponse() {
-        let dataFake = FakeResponseDataError.latestExchangeRateCorrectData
-        let responseFake = FakeResponseDataError.responseKO
+        let dataFake = ExchangeFakeResponseDataError.latestExchangeRateCorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, dataFake, nil)
@@ -195,8 +197,8 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testLatestChangeRateShouldPostFailedCallbackIfIncorrectData() {
-        let incorrectDataFake = FakeResponseDataError.incorrectData
-        let responseFake = FakeResponseDataError.responseOK
+        let incorrectDataFake = ExchangeFakeResponseDataError.incorrectData
+        let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
             return (responseFake, incorrectDataFake, nil)

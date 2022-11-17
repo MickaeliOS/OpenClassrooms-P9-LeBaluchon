@@ -59,12 +59,8 @@ class TraductionService {
                         "source": "\(source)",
                         "target": "\(target)",
                         "format": "text"]
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: jsonBody, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-                
+        request.httpBody = try? JSONSerialization.data(withJSONObject: jsonBody, options: .prettyPrinted)
+ 
         // Since the body is a JSON, we need the request to accept this format
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

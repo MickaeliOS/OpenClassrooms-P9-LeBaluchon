@@ -19,6 +19,9 @@
 		83B0AC462907CF8900FB1CAD /* ExchangeFakeResponseDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0AC452907CF8900FB1CAD /* ExchangeFakeResponseDataError.swift */; };
 		83B0AC482907CF9100FB1CAD /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0AC472907CF9100FB1CAD /* MockURLProtocol.swift */; };
 		83B0AC4A2907D30800FB1CAD /* Convert.json in Resources */ = {isa = PBXBuildFile; fileRef = 83B0AC492907D30800FB1CAD /* Convert.json */; };
+		83B62F8B292E0D9100030808 /* weatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B62F8A292E0D9100030808 /* weatherService.swift */; };
+		83B62F8D292E0FBF00030808 /* weatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B62F8C292E0FBF00030808 /* weatherResponse.swift */; };
+		83B62F8F292E184F00030808 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B62F8E292E184F00030808 /* WeatherVC.swift */; };
 		83B7B19F2912676800428BE0 /* LatestChangeRateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B7B19E2912676800428BE0 /* LatestChangeRateResponse.swift */; };
 		83BDFAC82906DA9400A851FE /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDFAC72906DA9400A851FE /* APIKeys.swift */; };
 		83D0BE5D29262683002CDD15 /* TraductionFakeResponseDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D0BE5C29262683002CDD15 /* TraductionFakeResponseDataError.swift */; };
@@ -56,6 +59,9 @@
 		83B0AC452907CF8900FB1CAD /* ExchangeFakeResponseDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFakeResponseDataError.swift; sourceTree = "<group>"; };
 		83B0AC472907CF9100FB1CAD /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		83B0AC492907D30800FB1CAD /* Convert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Convert.json; sourceTree = "<group>"; };
+		83B62F8A292E0D9100030808 /* weatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherService.swift; sourceTree = "<group>"; };
+		83B62F8C292E0FBF00030808 /* weatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherResponse.swift; sourceTree = "<group>"; };
+		83B62F8E292E184F00030808 /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		83B7B19E2912676800428BE0 /* LatestChangeRateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestChangeRateResponse.swift; sourceTree = "<group>"; };
 		83BDFAC72906DA9400A851FE /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		83D0BE5C29262683002CDD15 /* TraductionFakeResponseDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraductionFakeResponseDataError.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 			children = (
 				83ABF3F3290153B9002DC8CC /* ExchangeVC.swift */,
 				83E55A44291BAD7F00A38D3B /* TraductionVC.swift */,
+				83B62F8E292E184F00030808 /* WeatherVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -189,6 +196,8 @@
 		83D9EDA8291509560098F886 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				83B62F8A292E0D9100030808 /* weatherService.swift */,
+				83B62F8C292E0FBF00030808 /* weatherResponse.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -325,11 +334,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E55A41291BA91900A38D3B /* TraductionResponse.swift in Sources */,
+				83B62F8F292E184F00030808 /* WeatherVC.swift in Sources */,
 				83E55A3F291BA1D500A38D3B /* TraductionService.swift in Sources */,
+				83B62F8B292E0D9100030808 /* weatherService.swift in Sources */,
 				83BDFAC82906DA9400A851FE /* APIKeys.swift in Sources */,
 				83ABF3F229014639002DC8CC /* ConvertResponse.swift in Sources */,
 				839679AF28FFF17E00AF0733 /* AppDelegate.swift in Sources */,
 				839679B128FFF17E00AF0733 /* SceneDelegate.swift in Sources */,
+				83B62F8D292E0FBF00030808 /* weatherResponse.swift in Sources */,
 				83ABF3F4290153B9002DC8CC /* ExchangeVC.swift in Sources */,
 				83E55A45291BAD7F00A38D3B /* TraductionVC.swift in Sources */,
 				83ABF3F029013D7C002DC8CC /* ExchangeService.swift in Sources */,

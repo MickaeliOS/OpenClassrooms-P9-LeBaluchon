@@ -248,17 +248,34 @@
             </objects>
             <point key="canvasLocation" x="1704.6153846153845" y="-886.49289099526061"/>
         </scene>
-        <!--View Controller-->
+        <!--WeatherVC-->
         <scene sceneID="bxe-eh-H1X">
             <objects>
-                <viewController id="rHm-Ct-CxD" sceneMemberID="viewController">
+                <viewController id="rHm-Ct-CxD" customClass="WeatherVC" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fzA-Fu-gGv">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD1-oq-O9V">
+                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="O9r-pf-hxH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="FD1-oq-O9V" secondAttribute="trailing" id="2Hd-2w-1Qh"/>
+                            <constraint firstItem="O9r-pf-hxH" firstAttribute="bottom" secondItem="FD1-oq-O9V" secondAttribute="bottom" id="8Wy-j2-6H4"/>
+                            <constraint firstItem="FD1-oq-O9V" firstAttribute="top" secondItem="O9r-pf-hxH" secondAttribute="top" id="ioF-Ce-wKh"/>
+                            <constraint firstItem="FD1-oq-O9V" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" id="x0e-CK-Gj3"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="weather" id="QIA-Qd-LQZ"/>
+                    <connections>
+                        <outlet property="testLabel" destination="FD1-oq-O9V" id="psX-vd-TDy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BD0-TU-anC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

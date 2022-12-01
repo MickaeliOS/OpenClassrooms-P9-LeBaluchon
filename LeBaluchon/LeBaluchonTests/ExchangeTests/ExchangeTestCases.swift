@@ -16,6 +16,8 @@ final class ExchangeTestsCase: XCTestCase {
     var amount: String = "200"
 
     override func setUp() {
+        super.setUp()
+        
         // Mocking URLProtocol
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
@@ -30,10 +32,8 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error  in
@@ -52,16 +52,14 @@ final class ExchangeTestsCase: XCTestCase {
     
     func testConvertShouldPostFailedCallbackIfNoData() {
         MockURLProtocol.loadingHandler = { request in
-            return (nil, nil, nil)
+            return (nil, nil, ExchangeFakeResponseDataError.error)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
-            XCTAssertNil(error)
+            XCTAssertNotNil(error)
             expectation.fulfill()
         }
         
@@ -73,11 +71,9 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
@@ -95,9 +91,7 @@ final class ExchangeTestsCase: XCTestCase {
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
@@ -114,11 +108,9 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, incorrectDataFake, nil)
+            return (incorrectDataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
@@ -137,11 +129,9 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             // 0.977761 is the exchange rate result i'm expected
@@ -161,9 +151,7 @@ final class ExchangeTestsCase: XCTestCase {
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             XCTAssertFalse(success)
@@ -180,11 +168,9 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             XCTAssertFalse(success)
@@ -201,11 +187,9 @@ final class ExchangeTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, incorrectDataFake, nil)
+            return (incorrectDataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             XCTAssertFalse(success)

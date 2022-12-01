@@ -35,11 +35,13 @@ class WeatherService {
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
+                    print("MKA - Premier")
                     callback(false, nil, error)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("MKA - Deuxième")
                     callback(false, nil, nil)
                     return
                 }

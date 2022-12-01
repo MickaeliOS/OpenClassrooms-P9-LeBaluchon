@@ -17,6 +17,8 @@ final class TraductionTestsCase: XCTestCase {
     let expectedResponse = "Hi, how are you ?"
 
     override func setUp() {
+        super.setUp()
+
         // Mocking URLProtocol
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
@@ -29,11 +31,9 @@ final class TraductionTestsCase: XCTestCase {
         let responseFake = TraductionFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertTrue(success)
@@ -47,16 +47,14 @@ final class TraductionTestsCase: XCTestCase {
     
     func testGetTraductionShouldPostFailedCallbackIfNoData() {
         MockURLProtocol.loadingHandler = { request in
-            return (nil, nil, nil)
+            return (nil, nil, TraductionFakeResponseDataError.error)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
-            XCTAssertNil(error)
+            XCTAssertNotNil(error)
             expectation.fulfill()
         }
         
@@ -68,11 +66,9 @@ final class TraductionTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, dataFake, nil)
+            return (dataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertFalse(success)
@@ -90,9 +86,7 @@ final class TraductionTestsCase: XCTestCase {
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertFalse(success)
@@ -109,11 +103,9 @@ final class TraductionTestsCase: XCTestCase {
         let responseFake = ExchangeFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
-            return (responseFake, incorrectDataFake, nil)
+            return (incorrectDataFake, responseFake, nil)
         }
-        
-        setUp()
-        
+                
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertFalse(success)

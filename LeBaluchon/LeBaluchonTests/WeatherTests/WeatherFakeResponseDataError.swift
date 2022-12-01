@@ -1,17 +1,17 @@
 //
-//  TraductionFakeResponseDataError.swift
+//  WeatherFakeResponseDataError.swift
 //  LeBaluchonTests
 //
-//  Created by Mickaël Horn on 17/11/2022.
+//  Created by Mickaël Horn on 24/11/2022.
 //
 
 import Foundation
 
-class TraductionFakeResponseDataError {
+class WeatherFakeResponseDataError {
     // Data - getTraduction()
-    static var traductionCorrectData: Data {
-        let bundle = Bundle(for: TraductionFakeResponseDataError.self)
-        let url = bundle.url(forResource: "Traduction", withExtension: "json")
+    static var weatherCorrectData: Data {
+        let bundle = Bundle(for: WeatherFakeResponseDataError.self)
+        let url = bundle.url(forResource: "Weather", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }
@@ -23,6 +23,6 @@ class TraductionFakeResponseDataError {
     static let responseKO = HTTPURLResponse(url: URL(string: "https://openclassrooms.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
     
     // Error
-    class TraductionError: Error {}
-    static let error = TraductionError()
+    class WeatherError: Error {}
+    static let error = WeatherError()
 }

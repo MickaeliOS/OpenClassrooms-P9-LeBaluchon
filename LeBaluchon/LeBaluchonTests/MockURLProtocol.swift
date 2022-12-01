@@ -53,7 +53,7 @@ final class MockURLProtocol: URLProtocol {
         return request
     }
 
-    static var loadingHandler: ((URLRequest) -> (HTTPURLResponse?, Data?, Error?))?
+    static var loadingHandler: ((URLRequest) -> (Data?, HTTPURLResponse?, Error?))?
     
     override func startLoading() {
         guard let handler = MockURLProtocol.loadingHandler else {
@@ -61,9 +61,11 @@ final class MockURLProtocol: URLProtocol {
             return
         }
         
-        let (response, data, error) = handler(request)
+        let (data, response, error) = handler(request)
         
-        guard error == nil else {
+        // I'm forced to return didFailWithError when data is nil, because if I don't,
+        // when the startLoading() function terminates, data will be at 0 bytes by default
+        guard data != nil, error == nil else {
             client?.urlProtocol(self, didFailWithError: error!)
             return
         }
@@ -81,3 +83,74 @@ final class MockURLProtocol: URLProtocol {
     
     override func stopLoading() {}
 }
+
+
+/* class MockURLProtocol: URLProtocol {
+    static var loadingHandler: ((URLRequest) throws -> (Data?, HTTPURLResponse?, Error?))?
+    
+    override class func canInit(with request: URLRequest) -> Bool {
+        return true
+    }
+    
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
+    
+    override func stopLoading() {}
+    
+    override func startLoading() {
+        guard let handler = MockURLProtocol.loadingHandler else {
+            return
+        }
+        
+        do {
+            let (data, response, error) = try handler(request)
+            client?.urlProtocol(self, didReceive: response!, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: data!)
+            client?.urlProtocolDidFinishLoading(self)
+        } catch {
+            client?.urlProtocol(self, didFailWithError: error)
+        }
+    }
+} */
+
+/* class MockURLProtocol: URLProtocol {
+ static var loadingHandler: ((URLRequest) throws -> (Data?, HTTPURLResponse?, Error?))?
+ 
+ override class func canInit(with request: URLRequest) -> Bool {
+     return true
+ }
+ 
+ override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+     return request
+ }
+ 
+ override func stopLoading() {}
+ 
+ override func startLoading() {
+     guard let handler = MockURLProtocol.loadingHandler else {
+         return
+     }
+     
+     do {
+         let (data, response, error) = try handler(request)
+         
+         guard error == nil else {
+             client?.urlProtocol(self, didFailWithError: error!)
+             return
+         }
+         
+         if let data = data {
+             client?.urlProtocol(self, didLoad: data)
+         }
+         
+         if let response = response {
+             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+         }
+         
+         client?.urlProtocolDidFinishLoading(self)
+     } catch {
+         client?.urlProtocol(self, didFailWithError: error)
+     }
+ }
+}*/

@@ -13,6 +13,7 @@ class ExchangeVC: UIViewController {
         super.viewDidLoad()
         setupInterface()
         //getLatestChangeRates()
+        let data: Data? = nil
     }
     
     // Outlets

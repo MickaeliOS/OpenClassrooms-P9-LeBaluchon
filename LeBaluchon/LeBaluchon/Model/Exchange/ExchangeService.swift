@@ -34,11 +34,13 @@ class ExchangeService {
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
+                    print("PREMIERE BOUCLE")
                     callback(false, nil, error)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("DEUXIEME BOUCLE")
                     callback(false, nil, nil)
                     return
                 }

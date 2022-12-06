@@ -12,8 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        //getLatestChangeRates()
-        let data: Data? = nil
+        getLatestChangeRates()
     }
     
     // Outlets
@@ -25,16 +24,12 @@ class ExchangeVC: UIViewController {
     
     // Actions
     @IBAction func formControl(_ sender: Any) {
-        /*let from = moneyFromButton.titleLabel!.text!
-        let to = moneyToButton.titleLabel!.text!*/
-        let amount = moneyFromText.text
-
-        guard let amount = amount else {
+        guard let amount = moneyFromText.text else {
             presentAlert(with: "Please fill a currency you want to convert.")
             return
         }
         
-        calculateExchangeRate(from: "EUR", to: "USD", amount: amount)
+        calculateExchangeRate(amount: Double(amount)!)
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -49,19 +44,12 @@ class ExchangeVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func calculateExchangeRate(from: String, to: String, amount: String) {
-        ExchangeService.shared.convert(from: from, to: to, amount: amount) { success, result, error in
-            if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
-                return
-            }
-            
-            guard let result = result, success == true else {
-                return
-            }
-            
-            self.moneyToText.text = "\(result)"
+    private func calculateExchangeRate(amount: Double) {
+        guard let rate = ExchangeService.shared.rate else {
+            return
         }
+        let result = rate * amount
+        self.moneyToText.text = "\(result)"
     }
     
     private func getLatestChangeRates() {
@@ -76,7 +64,7 @@ class ExchangeVC: UIViewController {
             guard let result = result, success == true else {
                 return
             }
-            
+            ExchangeService.shared.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
         }
         

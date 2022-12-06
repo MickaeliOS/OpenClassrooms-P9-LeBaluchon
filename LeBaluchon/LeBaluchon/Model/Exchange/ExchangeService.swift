@@ -11,6 +11,9 @@ class ExchangeService {
     // Singleton
     static var shared = ExchangeService()
     private init() {}
+    
+    // Save the current rate
+    var rate: Double?
 
     // API configuration
     private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!
@@ -19,39 +22,6 @@ class ExchangeService {
     
     init(exchangeSession: URLSession) {
         self.exchangeSession = exchangeSession
-    }
-    
-    func convert(from: String, to: String, amount: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
-        // We prepare the parameters to be added at our baseUrl
-        let from = URLQueryItem(name: "from", value: from)
-        let to = URLQueryItem(name: "to", value: to)
-        let amount = URLQueryItem(name: "amount", value: amount)
-        let request = getCompleteRequest(endPoints: "/convert", parameters: [to, from, amount])
-                
-        task?.cancel()
-        task = exchangeSession.dataTask(with: request) { data, response, error in
-            // The dataTask method will execute in a separate queue, so we get back into the main one because
-            // we will modify the user interface with our exchange result
-            DispatchQueue.main.async {
-                guard let data = data, !data.isEmpty, error == nil else {
-                    callback(false, nil, error)
-                    return
-                }
-                
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    callback(false, nil, nil)
-                    return
-                }
-                
-                guard let responseJSON = try? JSONDecoder().decode(ConvertResponse.self, from: data),
-                      let result = responseJSON.result else {
-                    callback(false, nil, nil)
-                    return
-                }
-                callback(true, result, nil)
-            }
-        }
-        task?.resume()
     }
     
     func getLatestChangeRate(from: String, to: String, callback: @escaping (Bool, Double?, Error?) -> Void) {

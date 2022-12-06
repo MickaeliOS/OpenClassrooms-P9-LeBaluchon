@@ -7,101 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E8D522AD-156E-48EC-85C5-633BAA7CD000"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeBaluchon/Model/Exchange/ExchangeService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "convert(from:to:amount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7025EC0F-CC3D-4CEC-A317-16F6DFC68657"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeBaluchonTests/MockURLProtocol.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "startLoading()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CD92EC70-ACE9-4800-A144-2ABB9EB6EF3A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeBaluchonTests/ExchangeTests/ExchangeTestCases.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "testConvertShouldPostFailedCallbackIfNoData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CD92EC70-ACE9-4800-A144-2ABB9EB6EF3A - dfb489562898c170"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LeBaluchonTests.ExchangeTestsCase.testConvertShouldPostFailedCallbackIfNoData() -&gt; ()"
-                  moduleName = "LeBaluchonTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/iwase/Desktop/OC/projet9/LeBaluchon/LeBaluchonTests/ExchangeTests/ExchangeTestCases.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "CD92EC70-ACE9-4800-A144-2ABB9EB6EF3A - ea5bdcbbafe73d4d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.URLRequest) -&gt; (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSHTTPURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) in LeBaluchonTests.ExchangeTestsCase.testConvertShouldPostFailedCallbackIfNoData() -&gt; ()"
-                  moduleName = "LeBaluchonTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/iwase/Desktop/OC/projet9/LeBaluchon/LeBaluchonTests/ExchangeTests/ExchangeTestCases.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  uuid = "CD92EC70-ACE9-4800-A144-2ABB9EB6EF3A - ea5bdcbbafe73d4d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.URLRequest) -&gt; (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSHTTPURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) in LeBaluchonTests.ExchangeTestsCase.testConvertShouldPostFailedCallbackIfNoData() -&gt; ()"
-                  moduleName = "LeBaluchonTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/iwase/Desktop/OC/projet9/LeBaluchon/LeBaluchonTests/ExchangeTests/ExchangeTestCases.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "509DC73A-C02B-4684-B7D5-2AF448028EC2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -127,7 +32,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "36"
                   endingLineNumber = "36"
-                  offsetFromSymbolStart = "212">
+                  offsetFromSymbolStart = "196">
                </Location>
                <Location
                   uuid = "509DC73A-C02B-4684-B7D5-2AF448028EC2 - bd2dfbb59603df52"
@@ -142,7 +47,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "36"
                   endingLineNumber = "36"
-                  offsetFromSymbolStart = "260">
+                  offsetFromSymbolStart = "244">
                </Location>
             </Locations>
          </BreakpointContent>

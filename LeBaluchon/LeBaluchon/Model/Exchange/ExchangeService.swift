@@ -33,14 +33,12 @@ class ExchangeService {
             // The dataTask method will execute in a separate queue, so we get back into the main one because
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    print("PREMIERE BOUCLE")
+                guard let data = data, !data.isEmpty, error == nil else {
                     callback(false, nil, error)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("DEUXIEME BOUCLE")
                     callback(false, nil, nil)
                     return
                 }

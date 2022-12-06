@@ -65,7 +65,12 @@ final class MockURLProtocol: URLProtocol {
         
         // I'm forced to return didFailWithError when data is nil, because if I don't,
         // when the startLoading() function terminates, data will be at 0 bytes by default
-        guard data != nil, error == nil else {
+        /*guard data != nil, error == nil else {
+            client?.urlProtocol(self, didFailWithError: error!)
+            return
+        }*/
+        
+        guard error == nil else {
             client?.urlProtocol(self, didFailWithError: error!)
             return
         }

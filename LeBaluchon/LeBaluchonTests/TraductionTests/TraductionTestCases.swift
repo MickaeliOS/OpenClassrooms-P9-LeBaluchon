@@ -47,14 +47,14 @@ final class TraductionTestsCase: XCTestCase {
     
     func testGetTraductionShouldPostFailedCallbackIfNoData() {
         MockURLProtocol.loadingHandler = { request in
-            return (nil, nil, TraductionFakeResponseDataError.error)
+            return (nil, nil, nil)
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getTraduction(source: source, target: target, text: text) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
-            XCTAssertNotNil(error)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         

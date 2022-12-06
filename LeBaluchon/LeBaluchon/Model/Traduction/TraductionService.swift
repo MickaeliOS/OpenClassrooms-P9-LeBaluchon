@@ -28,7 +28,7 @@ class TraductionService {
         
         task = traductionSession.dataTask(with: request, completionHandler: { data, response, error in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
+                guard let data = data, !data.isEmpty, error == nil else {
                     callback(false, nil, error)
                     return
                 }

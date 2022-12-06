@@ -52,14 +52,14 @@ final class ExchangeTestsCase: XCTestCase {
     
     func testConvertShouldPostFailedCallbackIfNoData() {
         MockURLProtocol.loadingHandler = { request in
-            return (nil, nil, ExchangeFakeResponseDataError.error)
+            return (nil, nil, nil)
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.convert(from: from, to: to, amount: amount) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
-            XCTAssertNotNil(error)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         

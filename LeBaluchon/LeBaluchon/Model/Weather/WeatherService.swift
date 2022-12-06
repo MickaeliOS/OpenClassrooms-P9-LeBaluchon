@@ -34,7 +34,7 @@ class WeatherService {
             // The dataTask method will execute in a separate queue, so we get back into the main one because
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
+                guard let data = data, !data.isEmpty, error == nil else {
                     print("MKA - Premier")
                     callback(false, nil, error)
                     return

@@ -21,13 +21,12 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
     
-    func getWeather(lat: String, lon: String, callback: @escaping (Bool, (Double, [String])?, Error?) -> Void) {
-        let latitude = URLQueryItem(name: "lat", value: lat)
-        let longitude = URLQueryItem(name: "lon", value: lon)
+    func getWeather(city: String, callback: @escaping (Bool, (Double, [String:String])?, Error?) -> Void) {
+        let city = URLQueryItem(name: "q", value: city)
         let lang = URLQueryItem(name: "lang", value: "fr")
         let units = URLQueryItem(name: "units", value: "metric") // For Celsius
         let apiKey = URLQueryItem(name: "appid", value: APIKeys.openWeatherMapKey.rawValue)
-        let request = getCompleteRequest(parameters: [latitude, longitude, lang, units, apiKey])
+        let request = getCompleteRequest(parameters: [city, lang, units, apiKey])
         
         task?.cancel()
         task = weatherSession.dataTask(with: request) { data, response, error in
@@ -35,13 +34,11 @@ class WeatherService {
             // we will modify the user interface with our exchange result
             DispatchQueue.main.async {
                 guard let data = data, !data.isEmpty, error == nil else {
-                    print("MKA - Premier")
                     callback(false, nil, error)
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("MKA - Deuxième")
                     callback(false, nil, nil)
                     return
                 }
@@ -68,11 +65,11 @@ class WeatherService {
         return request
     }
     
-    private func getWeatherInformations(weather: [Weather]) -> [String] {
-        var descriptions = [String]()
+    private func getWeatherInformations(weather: [Weather]) -> [String:String] {
+        var descriptions = [String:String]()
         
         weather.forEach { weather in
-            descriptions.append(weather.description)
+            descriptions[weather.description] = weather.icon
         }
         
         return descriptions

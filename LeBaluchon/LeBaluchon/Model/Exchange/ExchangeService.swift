@@ -37,7 +37,7 @@ class ExchangeService {
         // C'est à dire que task va être écrasée par le deuxième appel mais les deux appels fonctionnent très bien
         task = exchangeSession.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
+                guard let data = data, !data.isEmpty, error == nil else {
                     callback(false, nil, error)
                     return
                 }

@@ -11,8 +11,7 @@ import XCTest
 final class WeatherTestCases: XCTestCase {
     var sessionFake: URLSession!
     var client: WeatherService!
-    var lat = "48.856614"
-    var lon = "2.3522219"
+    var city = "London"
     
     override func setUp() {
         super.setUp()
@@ -33,15 +32,14 @@ final class WeatherTestCases: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getWeather(lat: lat, lon: lon) { success, result, error in
+        client.getWeather(city: city) { success, result, error in
             XCTAssertTrue(success)
             
             guard let (temperature, descriptions) = result else {
                 return
             }
             XCTAssertEqual(temperature, 7.43)
-            XCTAssertEqual(descriptions, ["ciel dégagé"])
-            
+            XCTAssertEqual(descriptions["ciel dégagé"], "01d")
             XCTAssertNil(error)
             expectation.fulfill()
         }
@@ -55,7 +53,7 @@ final class WeatherTestCases: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getWeather(lat: lat, lon: lon) { success, result, error in
+        client.getWeather(city: city) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)
@@ -74,7 +72,7 @@ final class WeatherTestCases: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getWeather(lat: lat, lon: lon) { success, result, error in
+        client.getWeather(city: city) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)
@@ -92,7 +90,7 @@ final class WeatherTestCases: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getWeather(lat: lat, lon: lon) { success, result, error in
+        client.getWeather(city: city) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNotNil(error)
@@ -111,7 +109,7 @@ final class WeatherTestCases: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getWeather(lat: lat, lon: lon) { success, result, error in
+        client.getWeather(city: city) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)

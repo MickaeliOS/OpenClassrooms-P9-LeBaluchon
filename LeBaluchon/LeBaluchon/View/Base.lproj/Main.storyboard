@@ -256,30 +256,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD1-oq-O9V">
-                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2eW-sB-CRR">
+                                <rect key="frame" x="0.0" y="47" width="390" height="332"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0HN-eh-cF2">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="156"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oWM-Jm-wGN">
+                                                <rect key="frame" x="0.0" y="0.0" width="156" height="156"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="oWM-Jm-wGN" secondAttribute="height" multiplier="1:1" id="p43-2l-7wT"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paris temperature" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJp-KG-aHW">
+                                                <rect key="frame" x="156" y="0.0" width="234" height="156"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6S-pc-k6Q">
+                                        <rect key="frame" x="0.0" y="176" width="390" height="156"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7JB-Ch-b0b">
+                                                <rect key="frame" x="0.0" y="0.0" width="156" height="156"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="7JB-Ch-b0b" secondAttribute="height" multiplier="1:1" id="qMq-wf-PNB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London's temperature" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a15-C7-IFm">
+                                                <rect key="frame" x="156" y="0.0" width="234" height="156"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O9r-pf-hxH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="FD1-oq-O9V" secondAttribute="trailing" id="2Hd-2w-1Qh"/>
-                            <constraint firstItem="O9r-pf-hxH" firstAttribute="bottom" secondItem="FD1-oq-O9V" secondAttribute="bottom" id="8Wy-j2-6H4"/>
-                            <constraint firstItem="FD1-oq-O9V" firstAttribute="top" secondItem="O9r-pf-hxH" secondAttribute="top" id="ioF-Ce-wKh"/>
-                            <constraint firstItem="FD1-oq-O9V" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" id="x0e-CK-Gj3"/>
+                            <constraint firstItem="2eW-sB-CRR" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" id="9xe-fg-VlO"/>
+                            <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="2eW-sB-CRR" secondAttribute="trailing" id="DfF-I9-u3A"/>
+                            <constraint firstItem="2eW-sB-CRR" firstAttribute="top" secondItem="O9r-pf-hxH" secondAttribute="top" id="PRi-Ky-rWB"/>
+                            <constraint firstItem="oWM-Jm-wGN" firstAttribute="width" secondItem="O9r-pf-hxH" secondAttribute="width" multiplier="0.4" id="pZ3-0Q-JnW"/>
+                            <constraint firstItem="7JB-Ch-b0b" firstAttribute="width" secondItem="O9r-pf-hxH" secondAttribute="width" multiplier="0.4" id="puQ-Xb-E1V"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="weather" id="QIA-Qd-LQZ"/>
                     <connections>
-                        <outlet property="testLabel" destination="FD1-oq-O9V" id="psX-vd-TDy"/>
+                        <outlet property="londonIcon" destination="7JB-Ch-b0b" id="Ksu-fz-phn"/>
+                        <outlet property="londonLabel" destination="a15-C7-IFm" id="3ps-1O-MzR"/>
+                        <outlet property="parisIcon" destination="oWM-Jm-wGN" id="z1Q-3S-M2f"/>
+                        <outlet property="parisLabel" destination="a15-C7-IFm" id="Yb0-k0-xsK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BD0-TU-anC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1705" y="576"/>
+            <point key="canvasLocation" x="1704.6153846153845" y="575.82938388625587"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CNN-fy-Pc2">

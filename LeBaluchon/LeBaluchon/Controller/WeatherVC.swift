@@ -9,12 +9,18 @@ import UIKit
 
 class WeatherVC: UIViewController {
 
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var parisIcon: UIImageView!
+    @IBOutlet weak var londonIcon: UIImageView!
+    @IBOutlet weak var parisLabel: UILabel!
+    @IBOutlet weak var londonLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        WeatherService.shared.getWeather(lat: "48.856614", lon: "2.3522219") { success, tuple, error in
+        getWeather()
+    }
+    
+    private func getWeather() {
+        WeatherService.shared.getWeather(city: "London") { success, tuple, error in
             if error != nil {
                 //self.presentAlert(with: error!.localizedDescription)
                 return
@@ -24,13 +30,17 @@ class WeatherVC: UIViewController {
                 return
             }
             
-            self.testLabel.text = "Il fait \(temperature) degrés, "
+            self.londonLabel.text = "Il fait \(temperature) degrés, "
             
             descriptions.forEach { description in
-                self.testLabel.text! += description + ", "
+                self.londonLabel.text! += description.key + ", "
             }
 
-            self.testLabel.text! += "à Paris."
+            self.londonLabel.text! += "à Londres."
         }
+    }
+    
+    private func getIcon(iconNumber: String) {
+        londonIcon.image = UIImage(named: "01d")
     }
 }

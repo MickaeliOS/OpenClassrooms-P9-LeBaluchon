@@ -12,7 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        getLatestChangeRates()
+        //getLatestChangeRates()
     }
     
     // Outlets

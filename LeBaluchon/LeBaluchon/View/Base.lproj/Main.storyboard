@@ -217,6 +217,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="MvI-tM-mef" secondAttribute="bottom" constant="30" id="1EQ-1e-AGi"/>
+                            <constraint firstItem="MvI-tM-mef" firstAttribute="top" secondItem="rK3-oP-adg" secondAttribute="bottom" constant="-80" id="6pi-vd-GRA"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="fJE-vb-xJN" secondAttribute="trailing" id="AtE-zd-lfY"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="MvI-tM-mef" secondAttribute="trailing" constant="30" id="E1f-2F-vi3"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="top" secondItem="rK3-oP-adg" secondAttribute="top" id="HZL-SL-pRJ"/>

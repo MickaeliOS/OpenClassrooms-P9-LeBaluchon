@@ -23,7 +23,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="france_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="YYN-nT-vYa">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="48"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Français" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plM-SP-zTM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="French" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plM-SP-zTM">
                                         <rect key="frame" x="78" y="0.0" width="78" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -38,7 +38,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="united_states_of_america_round_icon_64" translatesAutoresizingMaskIntoConstraints="NO" id="NoN-dO-zhN">
                                         <rect key="frame" x="234" y="0.0" width="78" height="48"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anglais" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-Rd-Q9g">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-Rd-Q9g">
                                         <rect key="frame" x="312" y="0.0" width="78" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -203,7 +203,7 @@
                                 <rect key="frame" x="30" y="681" width="330" height="50"/>
                                 <color key="backgroundColor" systemColor="tintColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Calculer !">
+                                <buttonConfiguration key="configuration" style="plain" title="Calculate !">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
@@ -311,7 +311,7 @@
                         <outlet property="londonIcon" destination="7JB-Ch-b0b" id="Ksu-fz-phn"/>
                         <outlet property="londonLabel" destination="a15-C7-IFm" id="3ps-1O-MzR"/>
                         <outlet property="parisIcon" destination="oWM-Jm-wGN" id="z1Q-3S-M2f"/>
-                        <outlet property="parisLabel" destination="a15-C7-IFm" id="Yb0-k0-xsK"/>
+                        <outlet property="parisLabel" destination="TJp-KG-aHW" id="fE8-BB-s9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BD0-TU-anC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -12,7 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        //getLatestChangeRates()
+        getLatestChangeRates()
     }
     
     // Outlets
@@ -66,20 +66,20 @@ class ExchangeVC: UIViewController {
             }
             ExchangeService.shared.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
-        }
-        
-        // USD to EUR
-        ExchangeService.shared.getLatestChangeRate(from: "USD", to: "EUR") { success, result, error in
-            if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
-                return
-            }
             
-            guard let result = result, success == true else {
-                return
+            // USD to EUR
+            ExchangeService.shared.getLatestChangeRate(from: "USD", to: "EUR") { success, result, error in
+                if error != nil {
+                    self.presentAlert(with: error!.localizedDescription)
+                    return
+                }
+                
+                guard let result = result, success == true else {
+                    return
+                }
+                
+                self.usdToEurLabel.text = "1 USD = \(result) EUR"
             }
-            
-            self.usdToEurLabel.text = "1 USD = \(result) EUR"
         }
     }
     

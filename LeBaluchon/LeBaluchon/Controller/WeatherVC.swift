@@ -20,7 +20,8 @@ class WeatherVC: UIViewController {
     }
     
     private func getWeather() {
-        WeatherService.shared.getWeather(city: "London") { success, tuple, error in
+        // London
+        WeatherService.shared.getWeather(city: "New York") { success, tuple, error in
             if error != nil {
                 //self.presentAlert(with: error!.localizedDescription)
                 return
@@ -34,13 +35,39 @@ class WeatherVC: UIViewController {
             
             descriptions.forEach { description in
                 self.londonLabel.text! += description.key + ", "
+                
+                // TODO: Comprendre le tableau weather
+                self.getIcon(cityIcon: self.londonIcon, iconNumber: description.value)
             }
 
-            self.londonLabel.text! += "à Londres."
+            self.londonLabel.text! += "à New York."
+            
+            // Paris
+            WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
+                if error != nil {
+                    //self.presentAlert(with: error!.localizedDescription)
+                    return
+                }
+                
+                guard let (temperature, descriptions) = tuple, success == true else {
+                    return
+                }
+                
+                self.parisLabel.text = "Il fait \(temperature) degrés, "
+                
+                descriptions.forEach { description in
+                    self.parisLabel.text! += description.key + ", "
+                    
+                    // TODO: Comprendre le tableau weather
+                    self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
+                }
+
+                self.parisLabel.text! += "à Paris."
+            }
         }
     }
     
-    private func getIcon(iconNumber: String) {
-        londonIcon.image = UIImage(named: "01d")
+    private func getIcon(cityIcon: UIImageView, iconNumber: String) {
+        cityIcon.image = UIImage(named: iconNumber)
     }
 }

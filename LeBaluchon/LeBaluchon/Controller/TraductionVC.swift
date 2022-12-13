@@ -45,10 +45,10 @@ class TraductionVC: UIViewController {
     
     private func setupInterface() {
         // Source & Destination text view
-        sourceTextView.text = "Texte à traduire"
-        sourceTextView.textColor = .lightGray
-        translatedTextView.text = "Résultat traduction"
-        translatedTextView.textColor = .lightGray
+        sourceTextView.text = "Text to translate"
+        sourceTextView.textColor = .white
+        translatedTextView.text = "Translated text"
+        translatedTextView.textColor = .white
         
         // Translate button
         translateButton.layer.cornerRadius = 20

@@ -9,14 +9,23 @@ import UIKit
 
 class WeatherVC: UIViewController {
 
+    @IBOutlet weak var parisTitle: UILabel!
     @IBOutlet weak var parisIcon: UIImageView!
-    @IBOutlet weak var londonIcon: UIImageView!
-    @IBOutlet weak var parisLabel: UILabel!
-    @IBOutlet weak var londonLabel: UILabel!
+    @IBOutlet weak var parisTemp: UILabel!
+    @IBOutlet weak var parisMeteoDescription: UILabel!
+    
+    @IBOutlet weak var newYorkTitle: UILabel!
+    @IBOutlet weak var newYorkIcon: UIImageView!
+    @IBOutlet weak var newYorkTemp: UILabel!
+    @IBOutlet weak var newYorkMeteoDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWeather()
+        setupLabels()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //getWeather()
     }
     
     private func getWeather() {
@@ -31,16 +40,15 @@ class WeatherVC: UIViewController {
                 return
             }
             
-            self.londonLabel.text = "Il fait \(temperature) degrés, "
+            self.newYorkTemp.text = "\(temperature) °C"
+            self.newYorkMeteoDescription.text = ""
             
             descriptions.forEach { description in
-                self.londonLabel.text! += description.key + ", "
+                self.newYorkMeteoDescription.text! += description.key + ", "
                 
                 // TODO: Comprendre le tableau weather
-                self.getIcon(cityIcon: self.londonIcon, iconNumber: description.value)
+                self.getIcon(cityIcon: self.newYorkIcon, iconNumber: description.value)
             }
-
-            self.londonLabel.text! += "à New York."
             
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
@@ -53,21 +61,34 @@ class WeatherVC: UIViewController {
                     return
                 }
                 
-                self.parisLabel.text = "Il fait \(temperature) degrés, "
-                
+                self.parisTemp.text = "\(temperature) °C"
+                self.parisMeteoDescription.text = ""
+
                 descriptions.forEach { description in
-                    self.parisLabel.text! += description.key + ", "
+                    self.parisMeteoDescription.text! += description.key + ", "
                     
                     // TODO: Comprendre le tableau weather
                     self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
                 }
-
-                self.parisLabel.text! += "à Paris."
             }
         }
     }
     
     private func getIcon(cityIcon: UIImageView, iconNumber: String) {
         cityIcon.image = UIImage(named: iconNumber)
+    }
+    
+    private func setupLabels() {
+        parisTitle.layer.masksToBounds = true
+        parisTitle.layer.cornerRadius = 10
+        
+        parisMeteoDescription.layer.masksToBounds = true
+        parisMeteoDescription.layer.cornerRadius = 10
+        
+        newYorkTitle.layer.masksToBounds = true
+        newYorkTitle.layer.cornerRadius = 10
+        
+        newYorkMeteoDescription.layer.masksToBounds = true
+        newYorkMeteoDescription.layer.cornerRadius = 10
     }
 }

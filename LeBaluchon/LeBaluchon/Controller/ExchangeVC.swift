@@ -8,6 +8,7 @@
 import UIKit
 
 class ExchangeVC: UIViewController {
+    
     // Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,13 @@ class ExchangeVC: UIViewController {
     @IBOutlet weak var usdToEurLabel: UILabel!
     
     // Actions
-    @IBAction func formControl(_ sender: Any) {
-        guard let amount = moneyFromText.text else {
-            presentAlert(with: "Please fill a currency you want to convert.")
+    
+    @IBAction func calculateButton(_ sender: Any) {
+        guard let result = formControl() else {
             return
         }
         
-        calculateExchangeRate(amount: Double(amount)!)
+        calculateExchangeRate(amount: result)
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -37,17 +38,26 @@ class ExchangeVC: UIViewController {
     }
     
     // Private functions
-    private func presentAlert(with error: String) {
-        let alert: UIAlertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+    private func formControl() -> Double? {
+        guard let amount = moneyFromText.text, !amount.isEmpty else {
+            presentAlert(with: "Please fill a currency you want to convert.")
+            return nil
+        }
+        
+        guard let result = Double(amount) else {
+            presentAlert(with: "Please provide correct amount.")
+            return nil
+        }
+        
+        return result
     }
     
     private func calculateExchangeRate(amount: Double) {
-        guard let rate = ExchangeService.shared.rate else {
+        /*guard let rate = ExchangeService.shared.rate else {
             return
-        }
+        }*/
+        let rate = ExchangeService.shared.rate
+        
         let result = rate * amount
         self.moneyToText.text = "\(result)"
     }

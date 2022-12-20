@@ -13,7 +13,8 @@ class ExchangeService {
     private init() {}
     
     // Save the current rate
-    var rate: Double?
+    //var rate: Double?
+    var rate = 1.02785
 
     // API configuration
     private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!

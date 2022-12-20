@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		830B011029486C4A00CB2A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830B010F29486C4A00CB2A24 /* Main.storyboard */; };
+		837376592951B5D8009D5681 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837376582951B5D8009D5681 /* Extension.swift */; };
 		839679AF28FFF17E00AF0733 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839679AE28FFF17E00AF0733 /* AppDelegate.swift */; };
 		839679B128FFF17E00AF0733 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839679B028FFF17E00AF0733 /* SceneDelegate.swift */; };
 		839679B828FFF17E00AF0733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839679B728FFF17E00AF0733 /* Assets.xcassets */; };
 		839679BB28FFF17E00AF0733 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839679B928FFF17E00AF0733 /* LaunchScreen.storyboard */; };
 		83ABF3F029013D7C002DC8CC /* ExchangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ABF3EF29013D7C002DC8CC /* ExchangeService.swift */; };
-		83ABF3F229014639002DC8CC /* ConvertResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ABF3F129014639002DC8CC /* ConvertResponse.swift */; };
 		83ABF3F4290153B9002DC8CC /* ExchangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ABF3F3290153B9002DC8CC /* ExchangeVC.swift */; };
 		83B0AC422907CF2E00FB1CAD /* ExchangeTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0AC412907CF2E00FB1CAD /* ExchangeTestCases.swift */; };
 		83B0AC462907CF8900FB1CAD /* ExchangeFakeResponseDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0AC452907CF8900FB1CAD /* ExchangeFakeResponseDataError.swift */; };
@@ -48,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		830B010F29486C4A00CB2A24 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		837376582951B5D8009D5681 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		839679AB28FFF17E00AF0733 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839679AE28FFF17E00AF0733 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839679B028FFF17E00AF0733 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		839679BA28FFF17E00AF0733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		839679BC28FFF17E00AF0733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83ABF3EF29013D7C002DC8CC /* ExchangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeService.swift; sourceTree = "<group>"; };
-		83ABF3F129014639002DC8CC /* ConvertResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertResponse.swift; sourceTree = "<group>"; };
 		83ABF3F3290153B9002DC8CC /* ExchangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeVC.swift; sourceTree = "<group>"; };
 		83B0AC352907CDDA00FB1CAD /* LeBaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B0AC412907CF2E00FB1CAD /* ExchangeTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTestCases.swift; sourceTree = "<group>"; };
@@ -152,6 +152,7 @@
 				83ABF3F3290153B9002DC8CC /* ExchangeVC.swift */,
 				83E55A44291BAD7F00A38D3B /* TraductionVC.swift */,
 				83B62F8E292E184F00030808 /* WeatherVC.swift */,
+				837376582951B5D8009D5681 /* Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				83ABF3EF29013D7C002DC8CC /* ExchangeService.swift */,
-				83ABF3F129014639002DC8CC /* ConvertResponse.swift */,
 				83B7B19E2912676800428BE0 /* LatestChangeRateResponse.swift */,
 			);
 			path = Exchange;
@@ -348,11 +348,11 @@
 				83E55A3F291BA1D500A38D3B /* TraductionService.swift in Sources */,
 				83B62F8B292E0D9100030808 /* WeatherService.swift in Sources */,
 				83BDFAC82906DA9400A851FE /* APIKeys.swift in Sources */,
-				83ABF3F229014639002DC8CC /* ConvertResponse.swift in Sources */,
 				839679AF28FFF17E00AF0733 /* AppDelegate.swift in Sources */,
 				839679B128FFF17E00AF0733 /* SceneDelegate.swift in Sources */,
 				83B62F8D292E0FBF00030808 /* WeatherResponse.swift in Sources */,
 				83ABF3F4290153B9002DC8CC /* ExchangeVC.swift in Sources */,
+				837376592951B5D8009D5681 /* Extension.swift in Sources */,
 				83E55A45291BAD7F00A38D3B /* TraductionVC.swift in Sources */,
 				83ABF3F029013D7C002DC8CC /* ExchangeService.swift in Sources */,
 				83B7B19F2912676800428BE0 /* LatestChangeRateResponse.swift in Sources */,

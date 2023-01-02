@@ -59,7 +59,6 @@ class WeatherService {
     private func getCompleteRequest(parameters: [URLQueryItem]) -> URLRequest {
         var completeUrl = WeatherService.baseURL
         completeUrl.queryItems = parameters
-        //print(completeUrl)
         let request = URLRequest(url: completeUrl.url!)
         
         return request

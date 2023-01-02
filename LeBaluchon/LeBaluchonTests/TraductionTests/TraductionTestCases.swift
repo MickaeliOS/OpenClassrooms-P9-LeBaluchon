@@ -62,8 +62,8 @@ final class TraductionTestsCase: XCTestCase {
     }
     
     func testGetTraductionShouldPostFailedCallbackIfIncorrectResponse() {
-        let dataFake = ExchangeFakeResponseDataError.convertCorrectData
-        let responseFake = ExchangeFakeResponseDataError.responseKO
+        let dataFake = TraductionFakeResponseDataError.traductionCorrectData
+        let responseFake = TraductionFakeResponseDataError.responseKO
         
         MockURLProtocol.loadingHandler = { request in
             return (dataFake, responseFake, nil)
@@ -81,7 +81,7 @@ final class TraductionTestsCase: XCTestCase {
     }
     
     func testGetTraductionShouldPostFailedCallbackIfError() {
-        let errorFake = ExchangeFakeResponseDataError.error
+        let errorFake = TraductionFakeResponseDataError.error
         
         MockURLProtocol.loadingHandler = { request in
             return (nil, nil, errorFake)
@@ -99,8 +99,8 @@ final class TraductionTestsCase: XCTestCase {
     }
     
     func testGetTraductionShouldPostFailedCallbackIfIncorrectData() {
-        let incorrectDataFake = ExchangeFakeResponseDataError.incorrectData
-        let responseFake = ExchangeFakeResponseDataError.responseOK
+        let incorrectDataFake = TraductionFakeResponseDataError.incorrectData
+        let responseFake = TraductionFakeResponseDataError.responseOK
         
         MockURLProtocol.loadingHandler = { request in
             return (incorrectDataFake, responseFake, nil)

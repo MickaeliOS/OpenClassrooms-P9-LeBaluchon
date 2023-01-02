@@ -222,11 +222,23 @@
                                     <action selector="calculateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="F0L-02-JOd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-G1-Ruf">
+                                <rect key="frame" x="153" y="636.66666666666663" width="84.333333333333314" height="34.333333333333371"/>
+                                <color key="backgroundColor" red="0.0095000006259999999" green="0.18667906519999999" blue="0.27723270649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.2.circlepath.circle.fill" catalog="system" title="Rate">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="refreshRateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="miX-Sb-0Aa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rK3-oP-adg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="1Ku-G1-Ruf" firstAttribute="centerX" secondItem="FFk-MV-f9a" secondAttribute="centerX" id="5qp-g0-m5b"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="FFk-MV-f9a" secondAttribute="trailing" constant="30" id="9WB-Oy-AI3"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="fJE-vb-xJN" secondAttribute="trailing" constant="20" id="AtE-zd-lfY"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="top" secondItem="rK3-oP-adg" secondAttribute="top" id="HZL-SL-pRJ"/>
@@ -236,6 +248,7 @@
                             <constraint firstItem="gaN-LP-P9M" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.3" id="a1C-0e-71O"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="FFk-MV-f9a" secondAttribute="bottom" constant="30" id="fB2-2c-AIf"/>
                             <constraint firstItem="MhW-7U-sgg" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.3" id="knS-hz-DVh"/>
+                            <constraint firstItem="FFk-MV-f9a" firstAttribute="top" secondItem="1Ku-G1-Ruf" secondAttribute="bottom" constant="10" id="mzI-7X-i3b"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="89U-OB-6fl" appends="YES" id="4Qc-ju-WM4"/>
@@ -247,6 +260,7 @@
                         <outlet property="eurToUsdLabel" destination="OsU-pd-UbG" id="tJn-E1-Jwo"/>
                         <outlet property="moneyFromText" destination="gaN-LP-P9M" id="zam-Jt-WFb"/>
                         <outlet property="moneyToText" destination="MhW-7U-sgg" id="HtQ-WA-HUx"/>
+                        <outlet property="refreshRateButton" destination="1Ku-G1-Ruf" id="LBl-It-TES"/>
                         <outlet property="usdToEurLabel" destination="UQi-TA-tIp" id="ZOM-z3-3dO"/>
                     </connections>
                 </viewController>
@@ -361,6 +375,17 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9A-Ur-V1O">
+                                <rect key="frame" x="30" y="681" width="330" height="50"/>
+                                <color key="backgroundColor" red="0.0095000006259999999" green="0.18667906519999999" blue="0.27723270649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.2.circlepath.circle.fill" catalog="system" title="WEATHER">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="refreshWeatherButton:" destination="rHm-Ct-CxD" eventType="touchUpInside" id="8HS-zH-thb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O9r-pf-hxH"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -368,10 +393,14 @@
                             <constraint firstItem="2eW-sB-CRR" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" constant="20" id="9xe-fg-VlO"/>
                             <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="2eW-sB-CRR" secondAttribute="trailing" constant="20" id="DfF-I9-u3A"/>
                             <constraint firstItem="7JB-Ch-b0b" firstAttribute="width" secondItem="O9r-pf-hxH" secondAttribute="width" multiplier="0.5" id="G0g-I6-zGB"/>
+                            <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="a9A-Ur-V1O" secondAttribute="trailing" constant="30" id="PIF-YQ-MPl"/>
                             <constraint firstItem="2eW-sB-CRR" firstAttribute="top" secondItem="O9r-pf-hxH" secondAttribute="top" id="PRi-Ky-rWB"/>
+                            <constraint firstItem="a9A-Ur-V1O" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" constant="30" id="UtU-UL-t5g"/>
                             <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="2NF-7z-hII" secondAttribute="trailing" constant="20" id="Vqs-Ua-tcU"/>
                             <constraint firstItem="2NF-7z-hII" firstAttribute="top" secondItem="2eW-sB-CRR" secondAttribute="bottom" constant="50" id="aQx-ky-DLz"/>
                             <constraint firstItem="2NF-7z-hII" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" constant="20" id="gee-G3-EmL"/>
+                            <constraint firstItem="a9A-Ur-V1O" firstAttribute="height" secondItem="O9r-pf-hxH" secondAttribute="height" multiplier="0.07" id="nHw-Ao-bcs"/>
+                            <constraint firstItem="O9r-pf-hxH" firstAttribute="bottom" secondItem="a9A-Ur-V1O" secondAttribute="bottom" constant="30" id="ocw-la-bXO"/>
                             <constraint firstItem="oWM-Jm-wGN" firstAttribute="width" secondItem="O9r-pf-hxH" secondAttribute="width" multiplier="0.5" id="pZ3-0Q-JnW"/>
                         </constraints>
                     </view>
@@ -385,6 +414,7 @@
                         <outlet property="parisMeteoDescription" destination="k1T-Yj-eWz" id="WXI-D4-mZn"/>
                         <outlet property="parisTemp" destination="cua-v9-lip" id="ZxC-BL-mTg"/>
                         <outlet property="parisTitle" destination="Xdj-4s-xer" id="rED-Et-E23"/>
+                        <outlet property="refreshWeatherButton" destination="a9A-Ur-V1O" id="ABa-ah-HQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BD0-TU-anC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -411,6 +441,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.triangle.2.circlepath.circle.fill" catalog="system" width="128" height="123"/>
         <image name="european_union_round_icon_64" width="64" height="48"/>
         <image name="exchange" width="25" height="25"/>
         <image name="exchange-13" width="30" height="30"/>

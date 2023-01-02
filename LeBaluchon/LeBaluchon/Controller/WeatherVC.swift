@@ -8,35 +8,46 @@
 import UIKit
 
 class WeatherVC: UIViewController {
+    
+    // MARK: - Controller functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //getWeather()
+        setupLabels()
+        setupInterface()
+    }
 
+    // MARK: - Outlets
+    @IBOutlet weak var refreshWeatherButton: UIButton!
+
+    // Paris
     @IBOutlet weak var parisTitle: UILabel!
     @IBOutlet weak var parisIcon: UIImageView!
     @IBOutlet weak var parisTemp: UILabel!
     @IBOutlet weak var parisMeteoDescription: UILabel!
     
+    // NewYork
     @IBOutlet weak var newYorkTitle: UILabel!
     @IBOutlet weak var newYorkIcon: UIImageView!
     @IBOutlet weak var newYorkTemp: UILabel!
     @IBOutlet weak var newYorkMeteoDescription: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLabels()
+    // MARK: - Actions
+    @IBAction func refreshWeatherButton(_ sender: Any) {
+        getWeather()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //getWeather()
-    }
-    
+    // MARK: - Private functions
     private func getWeather() {
         // London
         WeatherService.shared.getWeather(city: "New York") { success, tuple, error in
             if error != nil {
-                //self.presentAlert(with: error!.localizedDescription)
+                self.presentAlert(with: error!.localizedDescription)
                 return
             }
             
             guard let (temperature, descriptions) = tuple, success == true else {
+                self.presentAlert(with: "Can't fetch New York's weather data. Please press the refresh button.")
                 return
             }
             
@@ -53,11 +64,12 @@ class WeatherVC: UIViewController {
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
                 if error != nil {
-                    //self.presentAlert(with: error!.localizedDescription)
+                    self.presentAlert(with: error!.localizedDescription)
                     return
                 }
                 
                 guard let (temperature, descriptions) = tuple, success == true else {
+                    self.presentAlert(with: "Can't fetch Paris weather data. Please press the refresh button.")
                     return
                 }
                 
@@ -90,5 +102,9 @@ class WeatherVC: UIViewController {
         
         newYorkMeteoDescription.layer.masksToBounds = true
         newYorkMeteoDescription.layer.cornerRadius = 10
+    }
+    
+    private func setupInterface() {
+        refreshWeatherButton.layer.cornerRadius = 20
     }
 }

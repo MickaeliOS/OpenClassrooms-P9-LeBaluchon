@@ -9,22 +9,22 @@ import UIKit
 
 class ExchangeVC: UIViewController {
     
-    // Controller functions
+    // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
         //getLatestChangeRates()
     }
     
-    // Outlets
+    // MARK: - Outlets
     @IBOutlet weak var moneyFromText: UITextField!
     @IBOutlet weak var moneyToText: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var eurToUsdLabel: UILabel!
     @IBOutlet weak var usdToEurLabel: UILabel!
+    @IBOutlet weak var refreshRateButton: UIButton!
     
-    // Actions
-    
+    // MARK: - Actions
     @IBAction func calculateButton(_ sender: Any) {
         guard let result = formControl() else {
             return
@@ -37,7 +37,12 @@ class ExchangeVC: UIViewController {
         moneyFromText.resignFirstResponder()
     }
     
-    // Private functions
+    
+    @IBAction func refreshRateButton(_ sender: Any) {
+        getLatestChangeRates()
+    }
+    
+    // MARK: - Private functions
     private func formControl() -> Double? {
         guard let amount = moneyFromText.text, !amount.isEmpty else {
             presentAlert(with: "Please fill a currency you want to convert.")
@@ -53,10 +58,10 @@ class ExchangeVC: UIViewController {
     }
     
     private func calculateExchangeRate(amount: Double) {
-        /*guard let rate = ExchangeService.shared.rate else {
+        guard let rate = ExchangeService.shared.rate else {
+            presentAlert(with: "Unknown exchange rate, please refresh it.")
             return
-        }*/
-        let rate = ExchangeService.shared.rate
+        }
         
         let result = rate * amount
         self.moneyToText.text = "\(result)"
@@ -72,8 +77,10 @@ class ExchangeVC: UIViewController {
             }
             
             guard let result = result, success == true else {
+                self.presentAlert(with: "Can't fetch the EUR to USD rate. Please press the refresh button.")
                 return
             }
+            
             ExchangeService.shared.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
             
@@ -85,6 +92,7 @@ class ExchangeVC: UIViewController {
                 }
                 
                 guard let result = result, success == true else {
+                    self.presentAlert(with: "Can't fetch the USD to EUR rate. You can either press the refresh button or convert your value.")
                     return
                 }
                 
@@ -95,9 +103,11 @@ class ExchangeVC: UIViewController {
     
     private func setupInterface() {
         calculateButton.layer.cornerRadius = 20
+        refreshRateButton.layer.cornerRadius = 15
     }
 }
 
+// MARK: - Extentions
 extension ExchangeVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         moneyFromText.resignFirstResponder()

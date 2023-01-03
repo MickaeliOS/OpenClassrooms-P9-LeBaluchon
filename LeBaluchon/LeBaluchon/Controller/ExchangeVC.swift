@@ -14,6 +14,7 @@ class ExchangeVC: UIViewController {
         super.viewDidLoad()
         setupInterface()
         //getLatestChangeRates()
+        toggleActivityIndicator(shown: false)
     }
     
     // MARK: - Outlets
@@ -23,6 +24,7 @@ class ExchangeVC: UIViewController {
     @IBOutlet weak var eurToUsdLabel: UILabel!
     @IBOutlet weak var usdToEurLabel: UILabel!
     @IBOutlet weak var refreshRateButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Actions
     @IBAction func calculateButton(_ sender: Any) {
@@ -40,6 +42,7 @@ class ExchangeVC: UIViewController {
     
     @IBAction func refreshRateButton(_ sender: Any) {
         getLatestChangeRates()
+        toggleActivityIndicator(shown: false)
     }
     
     // MARK: - Private functions
@@ -68,7 +71,9 @@ class ExchangeVC: UIViewController {
     }
     
     private func getLatestChangeRates() {
-        
+        // I'm hidding the refresh button to prevent the user for multiple input
+        toggleActivityIndicator(shown: true)
+
         // EUR to USD
         ExchangeService.shared.getLatestChangeRate(from: "EUR", to: "USD") { success, result, error in
             if error != nil {
@@ -104,6 +109,11 @@ class ExchangeVC: UIViewController {
     private func setupInterface() {
         calculateButton.layer.cornerRadius = 20
         refreshRateButton.layer.cornerRadius = 15
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        refreshRateButton.isHidden = shown
+        activityIndicator.isHidden = !shown
     }
 }
 

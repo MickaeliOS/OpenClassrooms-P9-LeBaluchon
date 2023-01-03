@@ -13,6 +13,7 @@
 // FR Flag : https://www.freeflagicons.com/country/france/round_icon/
 // Weather : <a href="https://www.flaticon.com/free-icons/weather" title="weather icons">Weather icons created by kosonicon - Flaticon</a>
 // Weather icons : https://openweathermap.org/weather-conditions
+// Launchscreen : Made with Canva
 
 import UIKit
 

@@ -19,7 +19,8 @@ class WeatherVC: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var refreshWeatherButton: UIButton!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // Paris
     @IBOutlet weak var parisTitle: UILabel!
     @IBOutlet weak var parisIcon: UIImageView!
@@ -35,10 +36,13 @@ class WeatherVC: UIViewController {
     // MARK: - Actions
     @IBAction func refreshWeatherButton(_ sender: Any) {
         getWeather()
+        toggleActivityIndicator(shown: false)
     }
     
     // MARK: - Private functions
     private func getWeather() {
+        toggleActivityIndicator(shown: true)
+        
         // London
         WeatherService.shared.getWeather(city: "New York") { success, tuple, error in
             if error != nil {
@@ -106,5 +110,10 @@ class WeatherVC: UIViewController {
     
     private func setupInterface() {
         refreshWeatherButton.layer.cornerRadius = 20
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        refreshWeatherButton.isHidden = shown
+        activityIndicator.isHidden = !shown
     }
 }

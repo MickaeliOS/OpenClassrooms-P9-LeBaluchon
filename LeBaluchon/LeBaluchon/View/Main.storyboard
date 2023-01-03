@@ -210,6 +210,17 @@
                                     <constraint firstAttribute="trailing" secondItem="gaN-LP-P9M" secondAttribute="trailing" id="ocg-9r-a0O"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-G1-Ruf">
+                                <rect key="frame" x="153" y="636.66666666666663" width="84.333333333333314" height="34.333333333333371"/>
+                                <color key="backgroundColor" red="0.0095000006259999999" green="0.18667906519999999" blue="0.27723270649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.2.circlepath.circle.fill" catalog="system" title="Rate">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="refreshRateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="miX-Sb-0Aa"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFk-MV-f9a">
                                 <rect key="frame" x="30" y="681" width="330" height="50"/>
                                 <color key="backgroundColor" red="0.0095000006259999999" green="0.18667906519999999" blue="0.27723270649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,25 +233,19 @@
                                     <action selector="calculateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="F0L-02-JOd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-G1-Ruf">
-                                <rect key="frame" x="153" y="636.66666666666663" width="84.333333333333314" height="34.333333333333371"/>
-                                <color key="backgroundColor" red="0.0095000006259999999" green="0.18667906519999999" blue="0.27723270649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.2.circlepath.circle.fill" catalog="system" title="Rate">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="refreshRateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="miX-Sb-0Aa"/>
-                                </connections>
-                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dFN-Sf-0hR">
+                                <rect key="frame" x="185" y="644" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rK3-oP-adg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="dFN-Sf-0hR" firstAttribute="centerY" secondItem="1Ku-G1-Ruf" secondAttribute="centerY" id="0uo-HV-kMt"/>
                             <constraint firstItem="1Ku-G1-Ruf" firstAttribute="centerX" secondItem="FFk-MV-f9a" secondAttribute="centerX" id="5qp-g0-m5b"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="FFk-MV-f9a" secondAttribute="trailing" constant="30" id="9WB-Oy-AI3"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="fJE-vb-xJN" secondAttribute="trailing" constant="20" id="AtE-zd-lfY"/>
+                            <constraint firstItem="dFN-Sf-0hR" firstAttribute="centerX" secondItem="1Ku-G1-Ruf" secondAttribute="centerX" id="EQR-XV-1ci"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="top" secondItem="rK3-oP-adg" secondAttribute="top" id="HZL-SL-pRJ"/>
                             <constraint firstItem="FFk-MV-f9a" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" constant="30" id="P9D-4h-2sm"/>
                             <constraint firstItem="FFk-MV-f9a" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.07" id="R0l-DD-eFO"/>
@@ -256,6 +261,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="exchange" id="epe-Me-YaI"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="dFN-Sf-0hR" id="YXx-1a-bTt"/>
                         <outlet property="calculateButton" destination="FFk-MV-f9a" id="qJG-zW-aqF"/>
                         <outlet property="eurToUsdLabel" destination="OsU-pd-UbG" id="tJn-E1-Jwo"/>
                         <outlet property="moneyFromText" destination="gaN-LP-P9M" id="zam-Jt-WFb"/>
@@ -386,6 +392,9 @@
                                     <action selector="refreshWeatherButton:" destination="rHm-Ct-CxD" eventType="touchUpInside" id="8HS-zH-thb"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mOs-S9-blK">
+                                <rect key="frame" x="176.66666666666666" y="687.66666666666663" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O9r-pf-hxH"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -399,13 +408,16 @@
                             <constraint firstItem="O9r-pf-hxH" firstAttribute="trailing" secondItem="2NF-7z-hII" secondAttribute="trailing" constant="20" id="Vqs-Ua-tcU"/>
                             <constraint firstItem="2NF-7z-hII" firstAttribute="top" secondItem="2eW-sB-CRR" secondAttribute="bottom" constant="50" id="aQx-ky-DLz"/>
                             <constraint firstItem="2NF-7z-hII" firstAttribute="leading" secondItem="O9r-pf-hxH" secondAttribute="leading" constant="20" id="gee-G3-EmL"/>
+                            <constraint firstItem="mOs-S9-blK" firstAttribute="centerX" secondItem="a9A-Ur-V1O" secondAttribute="centerX" id="jNc-iK-6M6"/>
                             <constraint firstItem="a9A-Ur-V1O" firstAttribute="height" secondItem="O9r-pf-hxH" secondAttribute="height" multiplier="0.07" id="nHw-Ao-bcs"/>
                             <constraint firstItem="O9r-pf-hxH" firstAttribute="bottom" secondItem="a9A-Ur-V1O" secondAttribute="bottom" constant="30" id="ocw-la-bXO"/>
                             <constraint firstItem="oWM-Jm-wGN" firstAttribute="width" secondItem="O9r-pf-hxH" secondAttribute="width" multiplier="0.5" id="pZ3-0Q-JnW"/>
+                            <constraint firstItem="mOs-S9-blK" firstAttribute="centerY" secondItem="a9A-Ur-V1O" secondAttribute="centerY" id="q8N-KH-dup"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="weather" id="QIA-Qd-LQZ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="mOs-S9-blK" id="eOy-Zh-HhW"/>
                         <outlet property="newYorkIcon" destination="7JB-Ch-b0b" id="cbh-vu-YHi"/>
                         <outlet property="newYorkMeteoDescription" destination="a15-C7-IFm" id="bNr-KR-ubW"/>
                         <outlet property="newYorkTemp" destination="41h-M3-dJe" id="PLi-Bm-fWM"/>

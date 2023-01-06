@@ -64,6 +64,7 @@ class WeatherVC: UIViewController {
                 // TODO: Comprendre le tableau weather
                 self.getIcon(cityIcon: self.newYorkIcon, iconNumber: description.value)
             }
+            self.removeComma(from: self.newYorkMeteoDescription)
             
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
@@ -86,6 +87,8 @@ class WeatherVC: UIViewController {
                     // TODO: Comprendre le tableau weather
                     self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
                 }
+                
+                self.removeComma(from: self.parisMeteoDescription)
             }
         }
     }
@@ -115,5 +118,12 @@ class WeatherVC: UIViewController {
     private func toggleActivityIndicator(shown: Bool) {
         refreshWeatherButton.isHidden = shown
         activityIndicator.isHidden = !shown
+    }
+    
+    private func removeComma(from: UILabel) {
+        guard let stringWithoutComma = from.text else {
+            return
+        }
+        from.text = String(stringWithoutComma.dropLast(2))
     }
 }

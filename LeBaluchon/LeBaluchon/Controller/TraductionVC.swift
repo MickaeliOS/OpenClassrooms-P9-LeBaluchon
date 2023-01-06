@@ -93,6 +93,9 @@ class TraductionVC: UIViewController {
         
         // Translate button
         translateButton.layer.cornerRadius = 20
+        
+        // Exchange button
+        exchangeButton.layer.cornerRadius = 20
     }
     
     private func sourceAndDestinationCheck() -> (String, String) {

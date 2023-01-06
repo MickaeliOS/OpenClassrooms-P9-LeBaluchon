@@ -14,7 +14,6 @@ class ExchangeVC: UIViewController {
         super.viewDidLoad()
         setupInterface()
         //getLatestChangeRates()
-        toggleActivityIndicator(shown: false)
     }
     
     // MARK: - Outlets

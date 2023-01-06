@@ -47,17 +47,15 @@ final class ExchangeTestsCase: XCTestCase {
     }
     
     func testLatestChangeRateShouldPostFailedCallbackIfNoData() {
-        let errorFake = ExchangeFakeResponseDataError.error
-
         MockURLProtocol.loadingHandler = { request in
-            return (nil, nil, errorFake)
+            return (nil, nil, nil)
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
-            XCTAssertNotNil(error)
+            XCTAssertNil(error)
             expectation.fulfill()
         }
         

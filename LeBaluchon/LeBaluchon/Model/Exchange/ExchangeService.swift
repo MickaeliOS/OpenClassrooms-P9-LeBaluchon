@@ -44,7 +44,7 @@ class ExchangeService {
                     return
                 }
                 
-                guard let responseJSON = try? JSONDecoder().decode(LatestChangeRateResponse.self, from: data),
+                guard let responseJSON = try? JSONDecoder().decode(ExchangeResponse.self, from: data),
                       let rates = responseJSON.rates else {
                     callback(false, nil, nil)
                     return

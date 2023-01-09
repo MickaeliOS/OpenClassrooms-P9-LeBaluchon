@@ -12,7 +12,7 @@ class WeatherVC: UIViewController {
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getWeather()
+        getWeather()
         setupLabels()
         setupInterface()
     }

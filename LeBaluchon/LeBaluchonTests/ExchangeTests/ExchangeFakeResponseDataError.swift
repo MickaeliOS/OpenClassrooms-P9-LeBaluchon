@@ -19,7 +19,7 @@ class ExchangeFakeResponseDataError {
     // Data - latestExchangeRate()
     static var latestExchangeRateCorrectData: Data {
         let bundle = Bundle(for: ExchangeFakeResponseDataError.self)
-        let url = bundle.url(forResource: "LatestChangeRate", withExtension: "json")
+        let url = bundle.url(forResource: "Exchange", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }

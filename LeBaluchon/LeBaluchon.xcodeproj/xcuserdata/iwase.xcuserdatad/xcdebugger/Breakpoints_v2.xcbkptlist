@@ -3,4 +3,70 @@
    uuid = "474C1289-55BC-42F7-BAE9-5C54969E1A66"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D668E9D1-F7FF-4467-AD8F-5C7E23DE69EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeBaluchonTests/MockURLProtocol.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "startLoading()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD1C54E6-651C-4897-973C-45CF662F323F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeBaluchon/Model/Traduction/TraductionService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getTraduction(source:target:text:callback:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CD1C54E6-651C-4897-973C-45CF662F323F - de63846ab02f6eeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeBaluchon.TraductionService.getTraduction(source: Swift.String, target: Swift.String, text: Swift.String, callback: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "LeBaluchon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet9/LeBaluchon/LeBaluchon/Model/Traduction/TraductionService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "CD1C54E6-651C-4897-973C-45CF662F323F - 619242765fecadcb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in LeBaluchon.TraductionService.getTraduction(source: Swift.String, target: Swift.String, text: Swift.String, callback: (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "LeBaluchon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet9/LeBaluchon/LeBaluchon/Model/Traduction/TraductionService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "252">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

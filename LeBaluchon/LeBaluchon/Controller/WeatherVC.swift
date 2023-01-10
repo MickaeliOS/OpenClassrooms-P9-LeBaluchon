@@ -36,22 +36,23 @@ class WeatherVC: UIViewController {
     // MARK: - Actions
     @IBAction func refreshWeatherButton(_ sender: Any) {
         getWeather()
-        toggleActivityIndicator(shown: false)
     }
     
     // MARK: - Private functions
     private func getWeather() {
         toggleActivityIndicator(shown: true)
         
-        // London
+        // New York
         WeatherService.shared.getWeather(city: "New York") { success, tuple, error in
             if error != nil {
                 self.presentAlert(with: error!.localizedDescription)
+                self.toggleActivityIndicator(shown: false)
                 return
             }
             
             guard let (temperature, descriptions) = tuple, success == true else {
                 self.presentAlert(with: "Can't fetch New York's weather data. Please press the refresh button.")
+                self.toggleActivityIndicator(shown: false)
                 return
             }
             
@@ -60,14 +61,13 @@ class WeatherVC: UIViewController {
             
             descriptions.forEach { description in
                 self.newYorkMeteoDescription.text! += description.key + ", "
-                
-                // TODO: Comprendre le tableau weather
                 self.getIcon(cityIcon: self.newYorkIcon, iconNumber: description.value)
             }
             self.removeComma(from: self.newYorkMeteoDescription)
             
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
+                self.toggleActivityIndicator(shown: false)
                 if error != nil {
                     self.presentAlert(with: error!.localizedDescription)
                     return
@@ -83,8 +83,6 @@ class WeatherVC: UIViewController {
 
                 descriptions.forEach { description in
                     self.parisMeteoDescription.text! += description.key + ", "
-                    
-                    // TODO: Comprendre le tableau weather
                     self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
                 }
                 

@@ -50,6 +50,7 @@ class TraductionVC: UIViewController {
         }
         
         resetTextViews()
+        sourceTextView.resignFirstResponder()
     }
     
     @IBAction func translateButton(_ sender: Any) {

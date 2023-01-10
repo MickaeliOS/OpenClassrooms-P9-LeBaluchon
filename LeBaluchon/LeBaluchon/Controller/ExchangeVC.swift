@@ -13,7 +13,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        //getLatestChangeRates()
+        getLatestChangeRates()
     }
     
     // MARK: - Outlets
@@ -38,10 +38,9 @@ class ExchangeVC: UIViewController {
         moneyFromText.resignFirstResponder()
     }
     
-    
     @IBAction func refreshRateButton(_ sender: Any) {
         getLatestChangeRates()
-        toggleActivityIndicator(shown: false)
+        resetTextViews()
     }
     
     // MARK: - Private functions
@@ -77,11 +76,19 @@ class ExchangeVC: UIViewController {
         ExchangeService.shared.getLatestChangeRate(from: "EUR", to: "USD") { success, result, error in
             if error != nil {
                 self.presentAlert(with: error!.localizedDescription)
+                
+                // If the first call fails, it means it will never execute the second one and I need to
+                // hide the ActivityIndicator and put the button back
+                self.toggleActivityIndicator(shown: false)
                 return
             }
             
             guard let result = result, success == true else {
                 self.presentAlert(with: "Can't fetch the EUR to USD rate. Please press the refresh button.")
+                
+                // If the first call fails, it means it will never execute the second one and I need to
+                // hide the ActivityIndicator and put the button back
+                self.toggleActivityIndicator(shown: false)
                 return
             }
             
@@ -90,6 +97,10 @@ class ExchangeVC: UIViewController {
             
             // USD to EUR
             ExchangeService.shared.getLatestChangeRate(from: "USD", to: "EUR") { success, result, error in
+                // Here, both of the API calls finished, so I have to make the button reappear and
+                // hide the ActivityIndicator
+                self.toggleActivityIndicator(shown: false)
+
                 if error != nil {
                     self.presentAlert(with: error!.localizedDescription)
                     return
@@ -111,8 +122,15 @@ class ExchangeVC: UIViewController {
     }
     
     private func toggleActivityIndicator(shown: Bool) {
+        // If shown is true, then the refresh button is hidden and we display the Activity Indicator
+        // If not, we hide the Activity Indicator and show the refresh button
         refreshRateButton.isHidden = shown
         activityIndicator.isHidden = !shown
+    }
+    
+    private func resetTextViews() {
+        moneyFromText.text = ""
+        moneyToText.text = ""
     }
 }
 

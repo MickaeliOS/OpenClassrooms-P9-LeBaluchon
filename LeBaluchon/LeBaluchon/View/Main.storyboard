@@ -29,7 +29,7 @@
                                     <color key="titleColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="translateButton:" destination="j4e-mR-xLL" eventType="touchUpInside" id="CAv-k0-a4C"/>
+                                    <action selector="translate:" destination="j4e-mR-xLL" eventType="touchUpInside" id="ZTz-xB-jiD"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HGj-lN-Fo4">
@@ -124,9 +124,9 @@
                         <outlet property="exchangeButton" destination="5TK-Ql-x9W" id="zo0-sB-bdW"/>
                         <outlet property="sourceFlag" destination="YYN-nT-vYa" id="fUA-HM-v36"/>
                         <outlet property="sourceLabel" destination="plM-SP-zTM" id="5dQ-vL-0cX"/>
-                        <outlet property="sourceTextView" destination="eh1-qY-S0K" id="lw5-Es-Y8G"/>
+                        <outlet property="textToTranslate" destination="eh1-qY-S0K" id="PhA-ps-EY2"/>
                         <outlet property="translateButton" destination="n0E-MG-7kH" id="n1i-4a-wfZ"/>
-                        <outlet property="translatedTextView" destination="ygi-kI-9sp" id="shi-p5-P2k"/>
+                        <outlet property="translatedText" destination="ygi-kI-9sp" id="WSE-2V-7X7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hx-sL-Bjc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -183,7 +183,7 @@
                                         <color key="tintColor" systemColor="tintColor"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="s0J-pC-cxo" id="ppt-UP-6UZ"/>
                                         </connections>
@@ -236,32 +236,47 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8OW-b2-2V3">
                                 <rect key="frame" x="20" y="696" width="350" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-G1-Ruf">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ws-dR-fY7">
                                         <rect key="frame" x="0.0" y="0.0" width="117" height="50"/>
-                                        <color key="backgroundColor" red="1" green="0.84172964100000003" blue="0.45198273659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
-                                        <color key="tintColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="RATE" image="arrow.triangle.2.circlepath.circle.fill" catalog="system">
-                                            <color key="titleColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="refreshRateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="miX-Sb-0Aa"/>
-                                        </connections>
-                                    </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0CF-hZ-2wT">
-                                        <rect key="frame" x="127" y="0.0" width="37" height="50"/>
-                                    </activityIndicatorView>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-G1-Ruf">
+                                                <rect key="frame" x="0.0" y="0.0" width="117" height="50"/>
+                                                <color key="backgroundColor" red="1" green="0.84172964100000003" blue="0.45198273659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
+                                                <color key="tintColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="RATE" image="arrow.triangle.2.circlepath.circle.fill" catalog="system">
+                                                    <color key="titleColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="refreshRateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="miX-Sb-0Aa"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0CF-hZ-2wT">
+                                                <rect key="frame" x="40" y="6.6666666666666288" width="37" height="37"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="0CF-hZ-2wT" firstAttribute="centerY" secondItem="5Ws-dR-fY7" secondAttribute="centerY" id="1YD-mn-Kr3"/>
+                                            <constraint firstAttribute="bottom" secondItem="1Ku-G1-Ruf" secondAttribute="bottom" id="5Rc-9C-O4m"/>
+                                            <constraint firstItem="0CF-hZ-2wT" firstAttribute="centerX" secondItem="5Ws-dR-fY7" secondAttribute="centerX" id="7bH-0c-Fud"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Ku-G1-Ruf" secondAttribute="trailing" id="gub-2r-aoG"/>
+                                            <constraint firstItem="1Ku-G1-Ruf" firstAttribute="top" secondItem="5Ws-dR-fY7" secondAttribute="top" id="pll-0r-fUJ"/>
+                                            <constraint firstItem="1Ku-G1-Ruf" firstAttribute="leading" secondItem="5Ws-dR-fY7" secondAttribute="leading" id="wtA-io-YP7"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFk-MV-f9a">
-                                        <rect key="frame" x="174" y="0.0" width="176" height="50"/>
+                                        <rect key="frame" x="127" y="0.0" width="223" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.84172964100000003" blue="0.45198273659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="CALCULATE">
+                                        <state key="normal" title="CONVERT">
                                             <color key="titleColor" red="0.16290172929999999" green="0.31186631320000002" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="calculateButton:" destination="s0J-pC-cxo" eventType="touchUpInside" id="F0L-02-JOd"/>
+                                            <action selector="convert:" destination="s0J-pC-cxo" eventType="touchUpInside" id="qpQ-T4-nI7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -278,7 +293,6 @@
                             <constraint firstItem="8OW-b2-2V3" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" constant="20" id="Heb-z1-uZc"/>
                             <constraint firstItem="8OW-b2-2V3" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.07" id="Mzq-1O-O49"/>
                             <constraint firstItem="fJE-vb-xJN" firstAttribute="leading" secondItem="rK3-oP-adg" secondAttribute="leading" constant="20" id="RTo-5e-3w5"/>
-                            <constraint firstItem="1Ku-G1-Ruf" firstAttribute="width" secondItem="rK3-oP-adg" secondAttribute="width" multiplier="0.3" id="S5Z-Qa-57Q"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="bottom" secondItem="8OW-b2-2V3" secondAttribute="bottom" constant="15" id="UdF-bk-Ra7"/>
                             <constraint firstItem="YGB-tX-2Bb" firstAttribute="leading" secondItem="9GG-4u-2Bh" secondAttribute="leading" id="YTv-a4-IE3"/>
                             <constraint firstItem="gaN-LP-P9M" firstAttribute="height" secondItem="rK3-oP-adg" secondAttribute="height" multiplier="0.3" id="a1C-0e-71O"/>
@@ -287,6 +301,7 @@
                             <constraint firstItem="YGB-tX-2Bb" firstAttribute="top" secondItem="9GG-4u-2Bh" secondAttribute="top" id="hcP-a8-Gmd"/>
                             <constraint firstItem="izd-dA-RYA" firstAttribute="top" secondItem="fJE-vb-xJN" secondAttribute="bottom" constant="35" id="lxD-0t-X9X"/>
                             <constraint firstItem="rK3-oP-adg" firstAttribute="trailing" secondItem="izd-dA-RYA" secondAttribute="trailing" constant="20" id="nPk-qr-VMC"/>
+                            <constraint firstItem="1Ku-G1-Ruf" firstAttribute="width" secondItem="rK3-oP-adg" secondAttribute="width" multiplier="0.3" id="y7g-rT-kxJ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="89U-OB-6fl" appends="YES" id="4Qc-ju-WM4"/>
@@ -295,11 +310,11 @@
                     <tabBarItem key="tabBarItem" title="" image="exchange" id="epe-Me-YaI"/>
                     <connections>
                         <outlet property="activityIndicator" destination="0CF-hZ-2wT" id="iz8-Ga-gkx"/>
-                        <outlet property="calculateButton" destination="FFk-MV-f9a" id="qJG-zW-aqF"/>
+                        <outlet property="convertButton" destination="FFk-MV-f9a" id="MxN-9o-bla"/>
+                        <outlet property="destinationAmount" destination="MhW-7U-sgg" id="ICP-xD-eo6"/>
                         <outlet property="eurToUsdLabel" destination="OsU-pd-UbG" id="tJn-E1-Jwo"/>
-                        <outlet property="moneyFromText" destination="gaN-LP-P9M" id="zam-Jt-WFb"/>
-                        <outlet property="moneyToText" destination="MhW-7U-sgg" id="HtQ-WA-HUx"/>
                         <outlet property="refreshRateButton" destination="1Ku-G1-Ruf" id="LBl-It-TES"/>
+                        <outlet property="sourceAmount" destination="gaN-LP-P9M" id="kvJ-A7-qen"/>
                         <outlet property="usdToEurLabel" destination="UQi-TA-tIp" id="ZOM-z3-3dO"/>
                     </connections>
                 </viewController>
@@ -432,6 +447,7 @@
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mOs-S9-blK">
                                 <rect key="frame" x="176.66666666666666" y="702.66666666666663" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O9r-pf-hxH"/>

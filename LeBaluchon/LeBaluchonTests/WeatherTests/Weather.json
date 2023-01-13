@@ -1,43 +1,43 @@
 {
     "coord": {
-        "lon": 2.3522,
-        "lat": 48.8566
+        "lon": 2.3488,
+        "lat": 48.8534
     },
     "weather": [
         {
-            "id": 800,
-            "main": "Clear",
-            "description": "ciel dégagé",
-            "icon": "01d"
+            "id": 803,
+            "main": "Clouds",
+            "description": "nuageux",
+            "icon": "04d"
         }
     ],
     "base": "stations",
     "main": {
-        "temp": 7.43,
-        "feels_like": 5.37,
-        "temp_min": 6.27,
-        "temp_max": 8.34,
-        "pressure": 1012,
-        "humidity": 93
+        "temp": 9.44,
+        "feels_like": 6.02,
+        "temp_min": 8.88,
+        "temp_max": 10.1,
+        "pressure": 1015,
+        "humidity": 81
     },
     "visibility": 10000,
     "wind": {
-        "speed": 3.09,
-        "deg": 220
+        "speed": 7.72,
+        "deg": 250
     },
     "clouds": {
-        "all": 0
+        "all": 75
     },
-    "dt": 1669276874,
+    "dt": 1673604909,
     "sys": {
         "type": 2,
         "id": 2041230,
         "country": "FR",
-        "sunrise": 1669273982,
-        "sunset": 1669305709
+        "sunrise": 1673595614,
+        "sunset": 1673626656
     },
     "timezone": 3600,
-    "id": 2978048,
-    "name": "Quartier Saint-Merri",
+    "id": 2988507,
+    "name": "Paris",
     "cod": 200
 }

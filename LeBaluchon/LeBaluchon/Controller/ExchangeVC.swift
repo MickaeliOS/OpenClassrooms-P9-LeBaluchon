@@ -17,25 +17,26 @@ class ExchangeVC: UIViewController {
     }
     
     // MARK: - Outlets
-    @IBOutlet weak var moneyFromText: UITextField!
-    @IBOutlet weak var moneyToText: UITextField!
-    @IBOutlet weak var calculateButton: UIButton!
+    @IBOutlet weak var sourceAmount: UITextField!
+    @IBOutlet weak var destinationAmount: UITextField!
+    @IBOutlet weak var convertButton: UIButton!
     @IBOutlet weak var eurToUsdLabel: UILabel!
     @IBOutlet weak var usdToEurLabel: UILabel!
     @IBOutlet weak var refreshRateButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Actions
-    @IBAction func calculateButton(_ sender: Any) {
-        guard let result = formControl() else {
+    @IBAction func convert(_ sender: Any) {
+        guard let result = amountControl() else {
             return
         }
         
         calculateExchangeRate(amount: result)
     }
     
+    
     @IBAction func dismissKeyboard(_ sender: Any) {
-        moneyFromText.resignFirstResponder()
+        sourceAmount.resignFirstResponder()
     }
     
     @IBAction func refreshRateButton(_ sender: Any) {
@@ -44,8 +45,8 @@ class ExchangeVC: UIViewController {
     }
     
     // MARK: - Private functions
-    private func formControl() -> Double? {
-        guard let amount = moneyFromText.text, !amount.isEmpty else {
+    private func amountControl() -> Double? {
+        guard let amount = sourceAmount.text, !amount.isEmpty else {
             presentAlert(with: "Please fill a currency you want to convert.")
             return nil
         }
@@ -59,14 +60,20 @@ class ExchangeVC: UIViewController {
     }
     
     private func calculateExchangeRate(amount: Double) {
-        guard let rate = ExchangeService.shared.rate else {
-            presentAlert(with: "Unknown exchange rate, please refresh it.")
-            return
+        do {
+            let result = try Exchange.convertCurrency(amount: amount)
+            self.destinationAmount.text = result
+            
+        } catch let error as Exchange.CurrencyError {
+            switch error {
+                case .unknownRate:
+                presentAlert(with: error.localizedDescription)
+            }
+        } catch {
+            presentAlert(with: "An error occured")
         }
-        
-        let result = rate * amount
-        self.moneyToText.text = "\(result)"
     }
+
     
     private func getLatestChangeRates() {
         // I'm hidding the refresh button to prevent the user for multiple input
@@ -92,7 +99,7 @@ class ExchangeVC: UIViewController {
                 return
             }
             
-            ExchangeService.shared.rate = result
+            Exchange.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
             
             // USD to EUR
@@ -117,7 +124,7 @@ class ExchangeVC: UIViewController {
     }
     
     private func setupInterface() {
-        calculateButton.layer.cornerRadius = 20
+        convertButton.layer.cornerRadius = 20
         refreshRateButton.layer.cornerRadius = 15
     }
     
@@ -129,15 +136,15 @@ class ExchangeVC: UIViewController {
     }
     
     private func resetTextViews() {
-        moneyFromText.text = ""
-        moneyToText.text = ""
+        sourceAmount.text = ""
+        destinationAmount.text = ""
     }
 }
 
 // MARK: - Extentions
 extension ExchangeVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        moneyFromText.resignFirstResponder()
+        sourceAmount.resignFirstResponder()
         return true
     }
 }

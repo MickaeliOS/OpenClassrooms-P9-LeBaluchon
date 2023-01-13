@@ -11,7 +11,7 @@ import XCTest
 final class WeatherTestCases: XCTestCase {
     var sessionFake: URLSession!
     var client: WeatherService!
-    var city = "London"
+    var city = "Paris"
     
     override func setUp() {
         super.setUp()
@@ -38,8 +38,8 @@ final class WeatherTestCases: XCTestCase {
             guard let (temperature, descriptions) = result else {
                 return
             }
-            XCTAssertEqual(temperature, 7.43)
-            XCTAssertEqual(descriptions["ciel dégagé"], "01d")
+            XCTAssertEqual(temperature, 9.44)
+            XCTAssertEqual(descriptions["nuageux"], "04d")
             XCTAssertNil(error)
             expectation.fulfill()
         }

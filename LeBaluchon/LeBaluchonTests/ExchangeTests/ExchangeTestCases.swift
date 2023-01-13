@@ -99,4 +99,29 @@ final class ExchangeTestsCase: XCTestCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testConvertCurrencyShouldSuccesIfRateAndAmountAreCorrectlyProvided() {
+        Exchange.rate = 1.02
+        
+        do {
+            let result = try Exchange.convertCurrency(amount: 21)
+            XCTAssertEqual(result, "21.42")
+        } catch {
+            XCTFail("An unexpected error occured: \(error)")
+        }
+        
+        // In the next test case, I must not have any exchange rate
+        Exchange.rate = nil
+    }
+
+    func testConvertCurrencyShouldThrowErrorIfRateIsNotSet() {
+        XCTAssertThrowsError(try Exchange.convertCurrency(amount: 21)) { (error) in
+            if let error = error as? Exchange.CurrencyError {
+                XCTAssertEqual(error, .unknownRate)
+                XCTAssertEqual(error.localizedDescription, "Unknown exchange rate, please refresh it.")
+            } else {
+                XCTFail("An unexpected error occurred: \(error)")
+            }
+        }
+    }
 }

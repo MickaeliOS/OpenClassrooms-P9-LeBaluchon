@@ -12,9 +12,6 @@ class ExchangeService {
     static var shared = ExchangeService()
     private init() {}
     
-    // Save the current rate
-    var rate: Double?
-
     // API configuration
     private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!
     private var task: URLSessionDataTask?

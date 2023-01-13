@@ -13,26 +13,27 @@ class TraductionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
+        checkSystemLanguage()
     }
 
     // MARK: - Outlets
     @IBOutlet weak var sourceFlag: UIImageView!
     @IBOutlet weak var sourceLabel: UILabel!
-    @IBOutlet weak var exchangeButton: UIButton!
+    @IBOutlet weak var textToTranslate: UITextView!
     @IBOutlet weak var destinationFlag: UIImageView!
     @IBOutlet weak var destinationLabel: UILabel!
-    @IBOutlet weak var sourceTextView: UITextView!
-    @IBOutlet weak var translatedTextView: UITextView!
+    @IBOutlet weak var translatedText: UITextView!
+    @IBOutlet weak var exchangeButton: UIButton!
     @IBOutlet weak var translateButton: UIButton!
     
     // MARK: - Variables
-    let placeHolderSourceText = "Text to translate"
+    let placeHolderTextToTranslate = "Text to translate"
     let placeHolderTranslatedText = "Translated text"
     let placeHolderColor = UIColor.lightGray
     
     // MARK: - Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
-        sourceTextView.resignFirstResponder()
+        textToTranslate.resignFirstResponder()
     }
     
     @IBAction func exchangeSourceAndDestination(_ sender: Any) {
@@ -50,18 +51,18 @@ class TraductionVC: UIViewController {
         }
         
         resetTextViews()
-        sourceTextView.resignFirstResponder()
+        textToTranslate.resignFirstResponder()
     }
     
-    @IBAction func translateButton(_ sender: Any) {
-        guard !sourceTextView.text.isEmpty else {
+    @IBAction func translate(_ sender: Any) {
+        guard !textToTranslate.text.isEmpty else {
             self.presentAlert(with: "Please fill the text area.")
             return
         }
         
-        let (source, destination) = sourceAndDestinationCheck()
+        let (source, destination) = getSourceAndDestinationLanguages()
         
-        TraductionService.shared.getTraduction(source: source, target: destination, text: sourceTextView.text) { success, translatedText, error in
+        TraductionService.shared.getTraduction(source: source, target: destination, text: textToTranslate.text) { success, translatedText, error in
             if error != nil {
                 self.presentAlert(with: error!.localizedDescription)
                 return
@@ -72,25 +73,25 @@ class TraductionVC: UIViewController {
                 return
             }
             
-            self.translatedTextView.text = "\(translatedText)"
+            self.translatedText.text = "\(translatedText)"
         }
     }
     
     // MARK: - Private functions
     private func resetTextViews() {
         // When I want to switch languages, i'm reseting the textViews.
-        sourceTextView.text = placeHolderSourceText
-        sourceTextView.textColor = placeHolderColor
-        translatedTextView.text = placeHolderTranslatedText
-        translatedTextView.textColor = placeHolderColor
+        textToTranslate.text = placeHolderTextToTranslate
+        textToTranslate.textColor = placeHolderColor
+        translatedText.text = placeHolderTranslatedText
+        translatedText.textColor = placeHolderColor
     }
     
     private func setupInterface() {
         // Source & Destination text view's place holder
-        sourceTextView.text = "Text to translate"
-        sourceTextView.textColor = .lightGray
-        translatedTextView.text = "Translated text"
-        translatedTextView.textColor = .lightGray
+        textToTranslate.text = "Text to translate"
+        textToTranslate.textColor = .lightGray
+        translatedText.text = "Translated text"
+        translatedText.textColor = .lightGray
         
         // Translate button
         translateButton.layer.cornerRadius = 20
@@ -99,11 +100,24 @@ class TraductionVC: UIViewController {
         exchangeButton.layer.cornerRadius = 20
     }
     
-    private func sourceAndDestinationCheck() -> (String, String) {
+    private func getSourceAndDestinationLanguages() -> (String, String) {
         if sourceLabel.text == "French" {
             return ("fr", "en")
         } else {
             return ("en", "fr")
+        }
+    }
+    
+    private func checkSystemLanguage() {
+        let preferredLanguages = NSLocale.preferredLanguages.first
+        let firstLanguage = preferredLanguages?.components(separatedBy: "-").first
+        
+        guard let firstLanguage = firstLanguage else {
+            return
+        }
+        
+        if firstLanguage == "en" {
+            exchangeSourceAndDestination(self)
         }
     }
 }
@@ -119,7 +133,7 @@ extension TraductionVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = placeHolderSourceText
+            textView.text = placeHolderTextToTranslate
             textView.textColor = UIColor.lightGray
         }
     }

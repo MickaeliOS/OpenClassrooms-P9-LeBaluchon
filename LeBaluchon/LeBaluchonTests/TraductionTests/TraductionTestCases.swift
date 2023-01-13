@@ -13,7 +13,7 @@ final class TraductionTestsCase: XCTestCase {
     var client: TraductionService!
     let source: String = "fr"
     let target: String = "en"
-    let text: String = "Bonjour, comment ça va ?"
+    let textToTranslate: String = "Bonjour, comment ça va ?"
     let expectedResponse = "Hi, how are you ?"
 
     override func setUp() {
@@ -35,7 +35,7 @@ final class TraductionTestsCase: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getTraduction(source: source, target: target, text: text) { success, result, error in
+        client.getTraduction(source: source, target: target, text: textToTranslate) { success, result, error in
             XCTAssertTrue(success)
             XCTAssertEqual(result, self.expectedResponse)
             XCTAssertNil(error)
@@ -51,7 +51,7 @@ final class TraductionTestsCase: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getTraduction(source: source, target: target, text: text) { success, result, error in
+        client.getTraduction(source: source, target: target, text: textToTranslate) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)
@@ -70,7 +70,7 @@ final class TraductionTestsCase: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getTraduction(source: source, target: target, text: text) { success, result, error in
+        client.getTraduction(source: source, target: target, text: textToTranslate) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)
@@ -88,7 +88,7 @@ final class TraductionTestsCase: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getTraduction(source: source, target: target, text: text) { success, result, error in
+        client.getTraduction(source: source, target: target, text: textToTranslate) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNotNil(error)
@@ -107,7 +107,7 @@ final class TraductionTestsCase: XCTestCase {
         }
                 
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        client.getTraduction(source: source, target: target, text: text) { success, result, error in
+        client.getTraduction(source: source, target: target, text: textToTranslate) { success, result, error in
             XCTAssertFalse(success)
             XCTAssertNil(result)
             XCTAssertNil(error)

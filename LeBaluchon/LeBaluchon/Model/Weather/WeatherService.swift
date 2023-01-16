@@ -64,7 +64,7 @@ class WeatherService {
         return request
     }
     
-    private func getWeatherInformations(weather: [Weather]) -> [String:String] {
+    private func getWeatherInformations(weather: [WeatherInformations]) -> [String:String] {
         var descriptions = [String:String]()
         
         weather.forEach { weather in

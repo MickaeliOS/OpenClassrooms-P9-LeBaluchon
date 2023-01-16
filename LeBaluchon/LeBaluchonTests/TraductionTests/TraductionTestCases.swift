@@ -116,4 +116,16 @@ final class TraductionTestsCase: XCTestCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGetSystemLanguageShouldSuccessIfWeHaveAPreferredLanguage() {
+        var traduction = Traduction()
+        let preferredLanguages = NSLocale.preferredLanguages.first
+        let firstLanguage = preferredLanguages?.components(separatedBy: "-").first
+
+        XCTAssertEqual(traduction.defaultLanguage, firstLanguage)
+    }
+    
+    /*func testGetSystemLanguageShouldReturnNothingIfNoPreferredLanguage() {
+        NSLocale.preferredLanguages.first = nil
+    }*/
 }

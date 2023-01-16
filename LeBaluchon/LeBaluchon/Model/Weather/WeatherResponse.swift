@@ -9,7 +9,7 @@ import Foundation
 
 struct weatherResponse: Decodable {
     var coord: Coord
-    var weather: [Weather]?
+    var weather: [WeatherInformations]?
     var base: String
     var main: Main
     var visibility: Int
@@ -28,7 +28,7 @@ struct Coord: Decodable {
     var lat: Double
 }
 
-struct Weather: Decodable {
+struct WeatherInformations: Decodable {
     var id: Int
     var main: String
     var description: String

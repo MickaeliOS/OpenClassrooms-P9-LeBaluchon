@@ -10,7 +10,7 @@ import Foundation
 class ExchangeService {
     // Singleton
     static var shared = ExchangeService()
-    private init() {}
+    init() {}
     
     // API configuration
     private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!

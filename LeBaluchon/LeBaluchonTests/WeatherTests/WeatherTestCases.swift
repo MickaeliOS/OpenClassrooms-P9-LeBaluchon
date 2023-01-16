@@ -118,4 +118,10 @@ final class WeatherTestCases: XCTestCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testRoundedTemperatureShouldSuccessIfCorrectTemperatureIsProvided() {
+        let temperature = 7.28
+        let roundedTemperature = Weather.roundedTemperature(temperature: temperature)
+        XCTAssertEqual(roundedTemperature, "7")
+    }
 }

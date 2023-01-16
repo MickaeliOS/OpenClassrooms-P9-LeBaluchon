@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		830B011029486C4A00CB2A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830B010F29486C4A00CB2A24 /* Main.storyboard */; };
-		83616DEC296D9DDB008C79AA /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83616DEB296D9DDB008C79AA /* Exchange.swift */; };
+		83616DEC296D9DDB008C79AA /* ExchangeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83616DEB296D9DDB008C79AA /* ExchangeControl.swift */; };
+		83649E4529754BC900F7B47A /* WeatherSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83649E4429754BC900F7B47A /* WeatherSupport.swift */; };
+		83649E4729754FBC00F7B47A /* LanguageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83649E4629754FBC00F7B47A /* LanguageConfiguration.swift */; };
 		837376592951B5D8009D5681 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837376582951B5D8009D5681 /* Extension.swift */; };
 		839679AF28FFF17E00AF0733 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839679AE28FFF17E00AF0733 /* AppDelegate.swift */; };
 		839679B128FFF17E00AF0733 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839679B028FFF17E00AF0733 /* SceneDelegate.swift */; };
@@ -48,7 +50,9 @@
 
 /* Begin PBXFileReference section */
 		830B010F29486C4A00CB2A24 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		83616DEB296D9DDB008C79AA /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		83616DEB296D9DDB008C79AA /* ExchangeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeControl.swift; sourceTree = "<group>"; };
+		83649E4429754BC900F7B47A /* WeatherSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSupport.swift; sourceTree = "<group>"; };
+		83649E4629754FBC00F7B47A /* LanguageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageConfiguration.swift; sourceTree = "<group>"; };
 		837376582951B5D8009D5681 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		839679AB28FFF17E00AF0733 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839679AE28FFF17E00AF0733 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +196,7 @@
 		83D9EDA7291509390098F886 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
-				83616DEB296D9DDB008C79AA /* Exchange.swift */,
+				83616DEB296D9DDB008C79AA /* ExchangeControl.swift */,
 				83ABF3EF29013D7C002DC8CC /* ExchangeService.swift */,
 				83B7B19E2912676800428BE0 /* ExchangeResponse.swift */,
 			);
@@ -202,6 +206,7 @@
 		83D9EDA8291509560098F886 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				83649E4429754BC900F7B47A /* WeatherSupport.swift */,
 				83B62F8A292E0D9100030808 /* WeatherService.swift */,
 				83B62F8C292E0FBF00030808 /* WeatherResponse.swift */,
 			);
@@ -211,6 +216,7 @@
 		83D9EDA92915095C0098F886 /* Traduction */ = {
 			isa = PBXGroup;
 			children = (
+				83649E4629754FBC00F7B47A /* LanguageConfiguration.swift */,
 				83E55A3E291BA1D500A38D3B /* TraductionService.swift */,
 				83E55A40291BA91900A38D3B /* TraductionResponse.swift */,
 			);
@@ -346,9 +352,11 @@
 				83B62F8F292E184F00030808 /* WeatherVC.swift in Sources */,
 				83E55A3F291BA1D500A38D3B /* TraductionService.swift in Sources */,
 				83B62F8B292E0D9100030808 /* WeatherService.swift in Sources */,
+				83649E4529754BC900F7B47A /* WeatherSupport.swift in Sources */,
 				83BDFAC82906DA9400A851FE /* APIKeys.swift in Sources */,
 				839679AF28FFF17E00AF0733 /* AppDelegate.swift in Sources */,
-				83616DEC296D9DDB008C79AA /* Exchange.swift in Sources */,
+				83616DEC296D9DDB008C79AA /* ExchangeControl.swift in Sources */,
+				83649E4729754FBC00F7B47A /* LanguageConfiguration.swift in Sources */,
 				839679B128FFF17E00AF0733 /* SceneDelegate.swift in Sources */,
 				83B62F8D292E0FBF00030808 /* WeatherResponse.swift in Sources */,
 				83ABF3F4290153B9002DC8CC /* ExchangeVC.swift in Sources */,

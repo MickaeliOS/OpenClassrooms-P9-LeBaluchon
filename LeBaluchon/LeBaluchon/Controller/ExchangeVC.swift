@@ -13,7 +13,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        getLatestChangeRates()
+        //getLatestChangeRates()
     }
     
     // MARK: - Outlets
@@ -25,15 +25,20 @@ class ExchangeVC: UIViewController {
     @IBOutlet weak var refreshRateButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - Variables
+    let exchange = ExchangeControl()
+    
     // MARK: - Actions
     @IBAction func convert(_ sender: Any) {
-        guard let result = amountControl() else {
-            return
+        do {
+            let result = try exchange.amountControl(amount: sourceAmount.text)
+            calculateExchangeRate(amount: result)
+        } catch let error as ExchangeControl.AmountError {
+            presentAlert(with: error.localizedDescription)
+        } catch {
+            presentAlert(with: "An error occured")
         }
-        
-        calculateExchangeRate(amount: result)
     }
-    
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         sourceAmount.resignFirstResponder()
@@ -45,26 +50,12 @@ class ExchangeVC: UIViewController {
     }
     
     // MARK: - Private functions
-    private func amountControl() -> Double? {
-        guard let amount = sourceAmount.text, !amount.isEmpty else {
-            presentAlert(with: "Please fill a currency you want to convert.")
-            return nil
-        }
-        
-        guard let result = Double(amount) else {
-            presentAlert(with: "Please provide correct amount.")
-            return nil
-        }
-        
-        return result
-    }
-    
     private func calculateExchangeRate(amount: Double) {
         do {
-            let result = try Exchange.convertCurrency(amount: amount)
+            let result = try exchange.convertCurrency(amount: amount)
             self.destinationAmount.text = result
             
-        } catch let error as Exchange.CurrencyError {
+        } catch let error as ExchangeControl.CurrencyError {
             switch error {
                 case .unknownRate:
                 presentAlert(with: error.localizedDescription)
@@ -99,7 +90,7 @@ class ExchangeVC: UIViewController {
                 return
             }
             
-            Exchange.rate = result
+            self.exchange.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
             
             // USD to EUR

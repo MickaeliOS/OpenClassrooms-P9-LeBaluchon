@@ -12,7 +12,7 @@ class WeatherVC: UIViewController {
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWeather()
+        //getWeather()
         setupLabels()
         setupInterface()
     }
@@ -32,6 +32,9 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var newYorkIcon: UIImageView!
     @IBOutlet weak var newYorkTemp: UILabel!
     @IBOutlet weak var newYorkMeteoDescription: UILabel!
+    
+    // MARK: - Variables
+    let weather = WeatherSupport()
     
     // MARK: - Actions
     @IBAction func refreshWeatherButton(_ sender: Any) {
@@ -56,14 +59,16 @@ class WeatherVC: UIViewController {
                 return
             }
             
-            self.newYorkTemp.text = "\(temperature) °C"
+            let roundedTemperature = self.weather.roundedTemperature(temperature: temperature)
+            self.newYorkTemp.text = "\(roundedTemperature) °C"
             self.newYorkMeteoDescription.text = ""
             
             descriptions.forEach { description in
                 self.newYorkMeteoDescription.text! += description.key + ", "
                 self.getIcon(cityIcon: self.newYorkIcon, iconNumber: description.value)
             }
-            self.removeComma(from: self.newYorkMeteoDescription)
+            
+            self.newYorkMeteoDescription.text = self.weather.removeComma(from: self.newYorkMeteoDescription.text)
             
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
@@ -78,7 +83,8 @@ class WeatherVC: UIViewController {
                     return
                 }
                 
-                self.parisTemp.text = "\(temperature) °C"
+                let roundedTemperature = self.weather.roundedTemperature(temperature: temperature)
+                self.parisTemp.text = "\(roundedTemperature) °C"
                 self.parisMeteoDescription.text = ""
 
                 descriptions.forEach { description in
@@ -86,7 +92,7 @@ class WeatherVC: UIViewController {
                     self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
                 }
                 
-                self.removeComma(from: self.parisMeteoDescription)
+                self.parisMeteoDescription.text = self.weather.removeComma(from: self.parisMeteoDescription.text)
             }
         }
     }
@@ -116,12 +122,5 @@ class WeatherVC: UIViewController {
     private func toggleActivityIndicator(shown: Bool) {
         refreshWeatherButton.isHidden = shown
         activityIndicator.isHidden = !shown
-    }
-    
-    private func removeComma(from: UILabel) {
-        guard let stringWithoutComma = from.text else {
-            return
-        }
-        from.text = String(stringWithoutComma.dropLast(2))
     }
 }

@@ -8,11 +8,11 @@
 import Foundation
 
 class TraductionService {
-    // Singleton
+    // MARK: - Singleton
     static var shared = TraductionService()
     private init() {}
 
-    // API configuration
+    // MARK: - API Configuration
     // The Google Translation API need to get his API Key in the URL, we can't pass it from the Header
     private static let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2?key=\(APIKeys.googleTranslationKey.rawValue)")!
     private var task: URLSessionDataTask?
@@ -22,6 +22,7 @@ class TraductionService {
         self.traductionSession = traductionSession
     }
     
+    // MARK: - Functions
     func getTraduction(source: String, target: String, text: String, callback: @escaping (Bool, String?, Error?) -> Void) {
         let request = getCompleteRequest(source: source, target: target, text: text)
         task?.cancel()

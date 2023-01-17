@@ -8,7 +8,7 @@
 import Foundation
 
 class TraductionFakeResponseDataError {
-    // Data - getTraduction()
+    // Data
     static var traductionCorrectData: Data {
         let bundle = Bundle(for: TraductionFakeResponseDataError.self)
         let url = bundle.url(forResource: "Traduction", withExtension: "json")

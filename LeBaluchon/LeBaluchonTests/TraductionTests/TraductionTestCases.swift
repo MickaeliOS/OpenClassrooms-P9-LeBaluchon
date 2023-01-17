@@ -9,13 +9,16 @@ import XCTest
 @testable import LeBaluchon
 
 final class TraductionTestsCase: XCTestCase {
+    // MARK: - Variables
     var sessionFake: URLSession!
     var client: TraductionService!
     let source: String = "fr"
     let target: String = "en"
     let textToTranslate: String = "Bonjour, comment ça va ?"
     let expectedResponse = "Hi, how are you ?"
-
+    var languageConfiguration: LanguageConfiguration!
+    
+    // MARK: - setUp
     override func setUp() {
         super.setUp()
 
@@ -24,8 +27,12 @@ final class TraductionTestsCase: XCTestCase {
         configuration.protocolClasses = [MockURLProtocol.self]
         sessionFake = URLSession(configuration: configuration)
         client = TraductionService(traductionSession: sessionFake)
+        
+        // To test LanguageConfiguration's functions
+        languageConfiguration = LanguageConfiguration()
     }
     
+    // MARK: - API
     func testDataFetchedSuccessfully() {
         let dataFake = TraductionFakeResponseDataError.traductionCorrectData
         let responseFake = TraductionFakeResponseDataError.responseOK
@@ -117,15 +124,49 @@ final class TraductionTestsCase: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetSystemLanguageShouldSuccessIfWeHaveAPreferredLanguage() {
-        var traduction = Traduction()
-        let preferredLanguages = NSLocale.preferredLanguages.first
-        let firstLanguage = preferredLanguages?.components(separatedBy: "-").first
-
-        XCTAssertEqual(traduction.defaultLanguage, firstLanguage)
+    // MARK: - Rest of the model
+    func testGetSourceAndDestinationLanguagesShouldReturnTheGoodTupleIfLanguageIsFrench() {
+        let (source, destination) = languageConfiguration.getSourceAndDestinationLanguages()
+        XCTAssertEqual(source, "fr")
+        XCTAssertEqual(destination, "en")
     }
     
-    /*func testGetSystemLanguageShouldReturnNothingIfNoPreferredLanguage() {
-        NSLocale.preferredLanguages.first = nil
-    }*/
+    func testGetSourceAndDestinationLanguagesShouldReturnTheGoodTupleIfLanguageIsEnglish() {
+        languageConfiguration.sourceLanguage = "English"
+        
+        let (source, destination) = languageConfiguration.getSourceAndDestinationLanguages()
+        XCTAssertEqual(source, "en")
+        XCTAssertEqual(destination, "fr")
+    }
+    
+    func testExchangeLanguageShouldSwitchLanguages() {
+        languageConfiguration.exchangeLanguages()
+        
+        XCTAssertEqual(languageConfiguration.sourceLanguage, "English")
+        XCTAssertEqual(languageConfiguration.destinationLanguage, "French")
+        XCTAssertEqual(languageConfiguration.sourceImageName, "united_states_of_america_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationImageName, "france_round_icon_64")
+    }
+    
+    func testEnglishChangingLanguageShouldExchangeLanguageIfEnglish() {
+        languageConfiguration.preferredLanguage = "en"
+        languageConfiguration.englishChangingLanguage()
+        
+        XCTAssertEqual(languageConfiguration.sourceLanguage, "English")
+        XCTAssertEqual(languageConfiguration.destinationLanguage, "French")
+        XCTAssertEqual(languageConfiguration.sourceImageName, "united_states_of_america_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationImageName, "france_round_icon_64")
+    }
+    
+    func testEnglishChangingLanguageShouldReturnIfNoPreferredLanguageIsFound() {
+        languageConfiguration.preferredLanguage = nil
+        languageConfiguration.englishChangingLanguage()
+        
+        // If the user don't have a preferred language, then we should have default configuration
+        // which is the following one
+        XCTAssertEqual(languageConfiguration.sourceLanguage, "French")
+        XCTAssertEqual(languageConfiguration.destinationLanguage, "English")
+        XCTAssertEqual(languageConfiguration.sourceImageName, "france_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationImageName, "united_states_of_america_round_icon_64")
+    }
 }

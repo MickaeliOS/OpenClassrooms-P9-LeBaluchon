@@ -8,13 +8,11 @@
 import UIKit
 
 class TraductionVC: UIViewController {
-    
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        languageConfiguration.checkSystemLanguage()
-        languageConfig()
+        setupLanguages()
     }
 
     // MARK: - Outlets
@@ -46,26 +44,11 @@ class TraductionVC: UIViewController {
     }
     
     @IBAction func translate(_ sender: Any) {
-        apiCall()
+        displayTraduction()
     }
     
     // MARK: - Private functions
-    /* private func exchangeLanguages(willMoveToEnglish: Bool) {
-        if willMoveToEnglish {
-            sourceFlag.image = UIImage(named: "united_states_of_america_round_icon_64")
-            sourceLabel.text = "English"
-            destinationFlag.image = UIImage(named: "france_round_icon_64")
-            destinationLabel.text = "French"
-
-        } else {
-            sourceFlag.image = UIImage(named: "france_round_icon_64")
-            sourceLabel.text = "French"
-            destinationFlag.image = UIImage(named: "united_states_of_america_round_icon_64")
-            destinationLabel.text = "English"
-        }
-    } */
-    
-    private func apiCall() {
+    private func displayTraduction() {
         guard !textToTranslate.text.isEmpty else {
             self.presentAlert(with: "Please fill the text area.")
             return
@@ -100,8 +83,8 @@ class TraductionVC: UIViewController {
         // Outlet's Configuration
         sourceLabel.text = languageConfiguration.sourceLanguage
         destinationLabel.text = languageConfiguration.destinationLanguage
-        sourceFlag.image = languageConfiguration.sourceImage
-        destinationFlag.image = languageConfiguration.destinationImage
+        sourceFlag.image = UIImage(named: languageConfiguration.sourceImageName)
+        destinationFlag.image = UIImage(named: languageConfiguration.destinationImageName)
     }
     
     private func setupInterface() {
@@ -116,6 +99,11 @@ class TraductionVC: UIViewController {
         
         // Exchange button
         exchangeButton.layer.cornerRadius = 20
+    }
+    
+    private func setupLanguages() {
+        languageConfiguration.englishChangingLanguage()
+        languageConfig()
     }
 }
 

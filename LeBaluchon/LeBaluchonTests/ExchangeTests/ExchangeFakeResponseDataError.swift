@@ -8,15 +8,7 @@
 import Foundation
 
 class ExchangeFakeResponseDataError {
-    // Data - convert()
-    static var convertCorrectData: Data {
-        let bundle = Bundle(for: ExchangeFakeResponseDataError.self)
-        let url = bundle.url(forResource: "Convert", withExtension: "json")
-        let data = try! Data(contentsOf: url!)
-        return data
-    }
-    
-    // Data - latestExchangeRate()
+    // Data
     static var latestExchangeRateCorrectData: Data {
         let bundle = Bundle(for: ExchangeFakeResponseDataError.self)
         let url = bundle.url(forResource: "Exchange", withExtension: "json")

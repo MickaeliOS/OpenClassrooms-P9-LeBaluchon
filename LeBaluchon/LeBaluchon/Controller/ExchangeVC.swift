@@ -8,7 +8,6 @@
 import UIKit
 
 class ExchangeVC: UIViewController {
-    
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +29,20 @@ class ExchangeVC: UIViewController {
     
     // MARK: - Actions
     @IBAction func convert(_ sender: Any) {
+        displayConversionResult()
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        sourceAmount.resignFirstResponder()
+    }
+    
+    @IBAction func refreshRate(_ sender: Any) {
+        getLatestChangeRates()
+        resetTextViews()
+    }
+    
+    // MARK: - Private functions
+    private func displayConversionResult() {
         do {
             let result = try exchange.amountControl(amount: sourceAmount.text)
             calculateExchangeRate(amount: result)
@@ -40,16 +53,6 @@ class ExchangeVC: UIViewController {
         }
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        sourceAmount.resignFirstResponder()
-    }
-    
-    @IBAction func refreshRateButton(_ sender: Any) {
-        getLatestChangeRates()
-        resetTextViews()
-    }
-    
-    // MARK: - Private functions
     private func calculateExchangeRate(amount: Double) {
         do {
             let result = try exchange.convertCurrency(amount: amount)

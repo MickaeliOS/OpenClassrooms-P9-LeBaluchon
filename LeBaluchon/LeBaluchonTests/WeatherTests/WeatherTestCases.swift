@@ -9,10 +9,13 @@
 import XCTest
 
 final class WeatherTestCases: XCTestCase {
+    // MARK: - Variables
     var sessionFake: URLSession!
     var client: WeatherService!
     var city = "Paris"
+    var weather: WeatherSupport!
     
+    // MARK: - setUp
     override func setUp() {
         super.setUp()
 
@@ -21,8 +24,12 @@ final class WeatherTestCases: XCTestCase {
         configuration.protocolClasses = [MockURLProtocol.self]
         sessionFake = URLSession(configuration: configuration)
         client = WeatherService(weatherSession: sessionFake)
+        
+        // To test WeatherSupport's functions
+        weather = WeatherSupport()
     }
     
+    // MARK: - API
     func testDataFetchedSuccessfully() {
         let dataFake = WeatherFakeResponseDataError.weatherCorrectData
         let responseFake = WeatherFakeResponseDataError.responseOK
@@ -119,9 +126,23 @@ final class WeatherTestCases: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testRoundedTemperatureShouldSuccessIfCorrectTemperatureIsProvided() {
-        let temperature = 7.28
-        let roundedTemperature = Weather.roundedTemperature(temperature: temperature)
-        XCTAssertEqual(roundedTemperature, "7")
+    // MARK: - Rest of the model
+    func testRoundedTemperatureShouldRoundToTheNearestInteger() {
+        let temperature = 21.86
+        let roundedTemperature = weather.roundedTemperature(temperature: temperature)
+        XCTAssertEqual(roundedTemperature, "22")
+    }
+    
+    func testRemoveLineBreakShouldRemoveTheLineBreak() {
+        let lineBreakString = "example\n"
+        let result = weather.removeLineBreak(from: lineBreakString)
+        
+        XCTAssertEqual(result, "example")
+    }
+    
+    func testRemoveLineBreakShouldReturnIfStringIsNil() {
+        let result = weather.removeLineBreak(from: nil)
+        
+        XCTAssertEqual(result, nil)
     }
 }

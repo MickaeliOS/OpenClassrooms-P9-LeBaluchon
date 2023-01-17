@@ -43,7 +43,7 @@ class ExchangeControl {
             throw CurrencyError.unknownRate
         }
         
-        // I prefer to use a String method, because with Doubles,
+        // To round, I prefer to use a String method, because with Doubles,
         // it seems to be unstable
         return String(format: "%.2f", (rate * amount))
     }

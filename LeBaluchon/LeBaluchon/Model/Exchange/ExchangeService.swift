@@ -8,11 +8,11 @@
 import Foundation
 
 class ExchangeService {
-    // Singleton
+    // MARK: - Singleton
     static var shared = ExchangeService()
     init() {}
     
-    // API configuration
+    // MARK: - API Configuration
     private static let baseURL = URLComponents(string: "https://api.apilayer.com/fixer")!
     private var task: URLSessionDataTask?
     private var exchangeSession = URLSession(configuration: .default)
@@ -21,6 +21,7 @@ class ExchangeService {
         self.exchangeSession = exchangeSession
     }
     
+    // MARK: - Functions
     func getLatestChangeRate(from: String, to: String, callback: @escaping (Bool, Double?, Error?) -> Void) {
         // Base = the three-letter currency code of your preferred base currency
         // Symbols = the output currency

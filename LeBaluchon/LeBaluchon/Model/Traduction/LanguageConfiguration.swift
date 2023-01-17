@@ -6,30 +6,16 @@
 //
 
 import Foundation
-import UIKit
 
 class LanguageConfiguration {
     // MARK: - Variables
     var sourceLanguage = "French"
     var destinationLanguage = "English"
-    var sourceImage = UIImage(named: "france_round_icon_64")
-    var destinationImage = UIImage(named: "united_states_of_america_round_icon_64")
-    var preferredLanguage = NSLocale.preferredLanguages.first
+    var sourceImageName = "france_round_icon_64"
+    var destinationImageName = "united_states_of_america_round_icon_64"
+    var preferredLanguage = NSLocale.preferredLanguages.first?.components(separatedBy: "-").first
     
     // MARK: - Functions
-    func checkSystemLanguage() {
-        let preferredLanguages = preferredLanguage
-        let firstLanguage = preferredLanguages?.components(separatedBy: "-").first
-        
-        guard let firstLanguage = firstLanguage else {
-            return
-        }
-        
-        if firstLanguage == "en" {
-            exchangeLanguages()
-        }
-    }
-    
     func getSourceAndDestinationLanguages() -> (String, String) {
         if sourceLanguage == "French" {
             return ("fr", "en")
@@ -45,8 +31,16 @@ class LanguageConfiguration {
         destinationLanguage = tempLanguage
         
         // Image changes
-        let tempImage = sourceImage
-        sourceImage = destinationImage
-        destinationImage = tempImage
+        let tempImage = sourceImageName
+        sourceImageName = destinationImageName
+        destinationImageName = tempImage
+    }
+    
+    func englishChangingLanguage() {
+        guard let preferredLanguage = preferredLanguage else { return }
+        
+        if preferredLanguage == "en" {
+            exchangeLanguages()
+        }
     }
 }

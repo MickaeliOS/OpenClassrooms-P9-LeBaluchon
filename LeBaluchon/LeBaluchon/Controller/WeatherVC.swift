@@ -8,16 +8,16 @@
 import UIKit
 
 class WeatherVC: UIViewController {
-    
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getWeather()
+        displayWeather()
         setupLabels()
         setupInterface()
     }
 
     // MARK: - Outlets
+
     @IBOutlet weak var refreshWeatherButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -37,12 +37,12 @@ class WeatherVC: UIViewController {
     let weather = WeatherSupport()
     
     // MARK: - Actions
-    @IBAction func refreshWeatherButton(_ sender: Any) {
-        getWeather()
+    @IBAction func refreshWeather(_ sender: Any) {
+        displayWeather()
     }
     
     // MARK: - Private functions
-    private func getWeather() {
+    private func displayWeather() {
         toggleActivityIndicator(shown: true)
         
         // New York
@@ -59,17 +59,20 @@ class WeatherVC: UIViewController {
                 return
             }
             
+            // Temperature part
             let roundedTemperature = self.weather.roundedTemperature(temperature: temperature)
             self.newYorkTemp.text = "\(roundedTemperature) °C"
+            
+            // Descriptions part
             self.newYorkMeteoDescription.text = ""
             
             descriptions.forEach { description in
-                self.newYorkMeteoDescription.text! += description.key + ", "
+                self.newYorkMeteoDescription.text! += description.key + "\n"
                 self.getIcon(cityIcon: self.newYorkIcon, iconNumber: description.value)
             }
             
-            self.newYorkMeteoDescription.text = self.weather.removeComma(from: self.newYorkMeteoDescription.text)
-            
+            self.newYorkMeteoDescription.text = self.weather.removeLineBreak(from: self.newYorkMeteoDescription.text)
+
             // Paris
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
                 self.toggleActivityIndicator(shown: false)
@@ -83,16 +86,19 @@ class WeatherVC: UIViewController {
                     return
                 }
                 
+                // Temperature part
                 let roundedTemperature = self.weather.roundedTemperature(temperature: temperature)
                 self.parisTemp.text = "\(roundedTemperature) °C"
+                
+                // Descriptions part
                 self.parisMeteoDescription.text = ""
 
                 descriptions.forEach { description in
-                    self.parisMeteoDescription.text! += description.key + ", "
+                    self.parisMeteoDescription.text! += description.key + "\n"
                     self.getIcon(cityIcon: self.parisIcon, iconNumber: description.value)
                 }
                 
-                self.parisMeteoDescription.text = self.weather.removeComma(from: self.parisMeteoDescription.text)
+                self.parisMeteoDescription.text = self.weather.removeLineBreak(from: self.parisMeteoDescription.text)
             }
         }
     }

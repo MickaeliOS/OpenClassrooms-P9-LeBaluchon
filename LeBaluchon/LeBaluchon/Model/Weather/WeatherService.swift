@@ -8,11 +8,11 @@
 import Foundation
 
 class WeatherService {
-    // Singleton
+    // MARK: - Singleton
     static var shared = WeatherService()
     private init() {}
 
-    // API configuration
+    // MARK: - API Configuration
     private static let baseURL = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather")!
     private var task: URLSessionDataTask?
     private var weatherSession = URLSession(configuration: .default)
@@ -21,6 +21,7 @@ class WeatherService {
         self.weatherSession = weatherSession
     }
     
+    // MARK: - Functions
     func getWeather(city: String, callback: @escaping (Bool, (Double, [String:String])?, Error?) -> Void) {
         let city = URLQueryItem(name: "q", value: city)
         let lang = URLQueryItem(name: "lang", value: "fr")

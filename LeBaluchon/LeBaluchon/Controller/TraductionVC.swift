@@ -37,10 +37,7 @@ class TraductionVC: UIViewController {
     }
     
     @IBAction func exchangeSourceAndDestination(_ sender: Any) {
-        languageConfiguration.exchangeLanguages()
-        languageConfig()
-        resetTextViews()
-        textToTranslate.resignFirstResponder()
+        displayExchangedLanguages()
     }
     
     @IBAction func translate(_ sender: Any) {
@@ -69,6 +66,13 @@ class TraductionVC: UIViewController {
             
             self.translatedText.text = "\(translatedText)"
         }
+    }
+    
+    private func displayExchangedLanguages() {
+        languageConfiguration.exchangeLanguages()
+        languageConfig()
+        resetTextViews()
+        textToTranslate.resignFirstResponder()
     }
     
     private func resetTextViews() {

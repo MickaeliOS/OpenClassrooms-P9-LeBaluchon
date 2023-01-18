@@ -12,7 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        //getLatestChangeRates()
+        //displayLatestChangeRates()
     }
     
     // MARK: - Outlets
@@ -37,8 +37,8 @@ class ExchangeVC: UIViewController {
     }
     
     @IBAction func refreshRate(_ sender: Any) {
-        getLatestChangeRates()
-        resetTextViews()
+        displayLatestChangeRates()
+        resetTextViews() // resetTextViews() dans displayLatestChangeRates() ? reset inutile au démarrage de l'appli...
     }
     
     // MARK: - Private functions
@@ -69,7 +69,7 @@ class ExchangeVC: UIViewController {
     }
 
     
-    private func getLatestChangeRates() {
+    private func displayLatestChangeRates() {
         // I'm hidding the refresh button to prevent the user for multiple input
         toggleActivityIndicator(shown: true)
 

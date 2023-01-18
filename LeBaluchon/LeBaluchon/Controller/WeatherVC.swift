@@ -14,6 +14,7 @@ class WeatherVC: UIViewController {
         displayWeather()
         setupLabels()
         setupInterface()
+        
     }
 
     // MARK: - Outlets

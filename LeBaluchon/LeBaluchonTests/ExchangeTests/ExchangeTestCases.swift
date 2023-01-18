@@ -139,7 +139,7 @@ final class ExchangeTestsCase: XCTestCase {
         }
     }
     
-    func testAmountControlShouldThrowEmptyAmountIfIncorrectAmountIsProvided() {
+    func testAmountControlShouldThrowEmptyAmountErrorIfIncorrectAmountIsProvided() {
         XCTAssertThrowsError(try exchange.amountControl(amount: nil)) { (error) in
             if let error = error as? ExchangeControl.AmountError {
                 XCTAssertEqual(error, .emptyAmount)
@@ -150,7 +150,7 @@ final class ExchangeTestsCase: XCTestCase {
         }
     }
     
-    func testAmountControlShouldThrowIncorrectAmountIfIncorrectAmountIsProvided() {
+    func testAmountControlShouldThrowIncorrectAmountErrorIfIncorrectAmountIsProvided() {
         XCTAssertThrowsError(try exchange.amountControl(amount: "aaaa")) { (error) in
             if let error = error as? ExchangeControl.AmountError {
                 XCTAssertEqual(error, .incorrectAmount)

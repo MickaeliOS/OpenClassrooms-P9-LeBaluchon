@@ -87,8 +87,8 @@ class TraductionVC: UIViewController {
         // Outlet's Configuration
         sourceLabel.text = languageConfiguration.sourceLanguage
         destinationLabel.text = languageConfiguration.destinationLanguage
-        sourceFlag.image = UIImage(named: languageConfiguration.sourceImageName)
-        destinationFlag.image = UIImage(named: languageConfiguration.destinationImageName)
+        sourceFlag.image = UIImage(named: languageConfiguration.sourceFlag)
+        destinationFlag.image = UIImage(named: languageConfiguration.destinationFlag)
     }
     
     private func setupInterface() {

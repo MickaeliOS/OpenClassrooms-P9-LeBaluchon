@@ -131,7 +131,7 @@ final class TraductionTestsCase: XCTestCase {
         XCTAssertEqual(destination, "en")
     }
     
-    func testGetSourceAndDestinationLanguagesShouldReturnTheGoodTupleIfLanguageIsEnglish() {
+    func testGetSourceAndDestinationLanguagesShouldReturnTheGoodTupleIfLanguageIsNotFrench() {
         languageConfiguration.sourceLanguage = "English"
         
         let (source, destination) = languageConfiguration.getSourceAndDestinationLanguages()
@@ -144,18 +144,18 @@ final class TraductionTestsCase: XCTestCase {
         
         XCTAssertEqual(languageConfiguration.sourceLanguage, "English")
         XCTAssertEqual(languageConfiguration.destinationLanguage, "French")
-        XCTAssertEqual(languageConfiguration.sourceImageName, "united_states_of_america_round_icon_64")
-        XCTAssertEqual(languageConfiguration.destinationImageName, "france_round_icon_64")
+        XCTAssertEqual(languageConfiguration.sourceFlag, "united_states_of_america_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationFlag, "france_round_icon_64")
     }
     
-    func testEnglishChangingLanguageShouldExchangeLanguageIfEnglish() {
+    func testEnglishChangingLanguageShouldExchangeLanguageIfNotFrench() {
         languageConfiguration.preferredLanguage = "en"
         languageConfiguration.englishChangingLanguage()
         
         XCTAssertEqual(languageConfiguration.sourceLanguage, "English")
         XCTAssertEqual(languageConfiguration.destinationLanguage, "French")
-        XCTAssertEqual(languageConfiguration.sourceImageName, "united_states_of_america_round_icon_64")
-        XCTAssertEqual(languageConfiguration.destinationImageName, "france_round_icon_64")
+        XCTAssertEqual(languageConfiguration.sourceFlag, "united_states_of_america_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationFlag, "france_round_icon_64")
     }
     
     func testEnglishChangingLanguageShouldReturnIfNoPreferredLanguageIsFound() {
@@ -166,7 +166,7 @@ final class TraductionTestsCase: XCTestCase {
         // which is the following one
         XCTAssertEqual(languageConfiguration.sourceLanguage, "French")
         XCTAssertEqual(languageConfiguration.destinationLanguage, "English")
-        XCTAssertEqual(languageConfiguration.sourceImageName, "france_round_icon_64")
-        XCTAssertEqual(languageConfiguration.destinationImageName, "united_states_of_america_round_icon_64")
+        XCTAssertEqual(languageConfiguration.sourceFlag, "france_round_icon_64")
+        XCTAssertEqual(languageConfiguration.destinationFlag, "united_states_of_america_round_icon_64")
     }
 }

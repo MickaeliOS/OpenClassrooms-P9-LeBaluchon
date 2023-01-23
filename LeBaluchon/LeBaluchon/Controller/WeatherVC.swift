@@ -14,11 +14,9 @@ class WeatherVC: UIViewController {
         displayWeather()
         setupLabels()
         setupInterface()
-        
     }
 
     // MARK: - Outlets
-
     @IBOutlet weak var refreshWeatherButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     

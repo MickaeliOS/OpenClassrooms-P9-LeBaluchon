@@ -44,6 +44,7 @@ final class ExchangeTestsCase: XCTestCase {
         client.getLatestChangeRate(from: from, to: to) { success, result, error in
             // 0.977761 is the exchange rate result i'm expected
             XCTAssertEqual(result, 0.977761)
+            XCTAssertEqual(ExchangeControl.rate, 0.977761)
             XCTAssertTrue(success)
             XCTAssertNil(error)
             
@@ -109,14 +110,16 @@ final class ExchangeTestsCase: XCTestCase {
     
     // MARK: - Rest of the model
     func testConvertCurrencyShouldSucceedIfRateAndAmountAreCorrectlyProvided() {
-        exchange.rate = 1.02
-        
+        ExchangeControl.rate = 1.02
+
         do {
             let result = try exchange.convertCurrency(amount: 21)
             XCTAssertEqual(result, "21.42")
         } catch {
             XCTFail("An unexpected error occured: \(error)")
         }
+        
+        ExchangeControl.rate = nil
     }
     
     func testConvertCurrencyShouldThrowUnknownRateIfRateIsNotSet() {

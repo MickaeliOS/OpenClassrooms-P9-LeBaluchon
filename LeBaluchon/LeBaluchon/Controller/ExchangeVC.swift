@@ -37,8 +37,7 @@ class ExchangeVC: UIViewController {
     }
     
     @IBAction func refreshRate(_ sender: Any) {
-        displayLatestChangeRates()
-        resetTextViews() // resetTextViews() dans displayLatestChangeRates() ? reset inutile au démarrage de l'appli...
+        refreshingProcess()
     }
     
     // MARK: - Private functions
@@ -87,13 +86,11 @@ class ExchangeVC: UIViewController {
             guard let result = result, success == true else {
                 self.presentAlert(with: "Can't fetch the EUR to USD rate. Please press the refresh button.")
                 
-                // If the first call fails, it means it will never execute the second one and I need to
-                // hide the ActivityIndicator and put the button back
+                // Same logic as above, I need to hide the AI and and display the button
                 self.toggleActivityIndicator(shown: false)
                 return
             }
             
-            self.exchange.rate = result
             self.eurToUsdLabel.text = "1 EUR = \(result) USD"
             
             // USD to EUR
@@ -115,6 +112,11 @@ class ExchangeVC: UIViewController {
                 self.usdToEurLabel.text = "1 USD = \(result) EUR"
             }
         }
+    }
+    
+    private func refreshingProcess() {
+        displayLatestChangeRates()
+        resetTextViews()
     }
     
     private func setupInterface() {

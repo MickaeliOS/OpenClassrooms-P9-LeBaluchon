@@ -9,7 +9,7 @@ import Foundation
 
 class ExchangeControl {
     // MARK: - Variables
-    var rate: Double?
+    static var rate: Double?
     
     // MARK: - Enums
     enum CurrencyError: Error {
@@ -39,7 +39,7 @@ class ExchangeControl {
     
     // MARK: - Functions
     func convertCurrency(amount: Double) throws -> String {
-        guard let rate = rate else {
+        guard let rate = ExchangeControl.rate else {
             throw CurrencyError.unknownRate
         }
         

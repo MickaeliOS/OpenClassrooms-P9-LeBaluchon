@@ -48,6 +48,11 @@ class ExchangeService {
                     return
                 }
                 
+                // Saving the rate, so we only need 1 API call
+                if responseJSON.base == "EUR" {
+                    ExchangeControl.rate = rates[to]
+                }
+                
                 callback(true, rates[to], nil)
             }
         }

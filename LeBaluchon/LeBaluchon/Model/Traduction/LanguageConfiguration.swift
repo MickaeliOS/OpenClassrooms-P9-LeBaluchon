@@ -37,6 +37,7 @@ class LanguageConfiguration {
     }
     
     func englishChangingLanguage() {
+        // If the user's language is english, we put english configuration
         guard let preferredLanguage = preferredLanguage else { return }
         
         if preferredLanguage == "en" {

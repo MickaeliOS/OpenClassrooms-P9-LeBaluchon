@@ -12,7 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        //displayLatestChangeRates()
+        displayLatestChangeRates()
     }
     
     // MARK: - Outlets
@@ -51,7 +51,7 @@ class ExchangeVC: UIViewController {
             presentAlert(with: "An error occured")
         }
     }
-    
+
     private func calculateExchangeRate(amount: Double) {
         do {
             let result = try exchange.convertCurrency(amount: amount)

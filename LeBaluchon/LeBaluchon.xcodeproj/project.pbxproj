@@ -196,9 +196,9 @@
 		83D9EDA7291509390098F886 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
-				83616DEB296D9DDB008C79AA /* ExchangeControl.swift */,
 				83ABF3EF29013D7C002DC8CC /* ExchangeService.swift */,
 				83B7B19E2912676800428BE0 /* ExchangeResponse.swift */,
+				83616DEB296D9DDB008C79AA /* ExchangeControl.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -206,9 +206,9 @@
 		83D9EDA8291509560098F886 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				83649E4429754BC900F7B47A /* WeatherSupport.swift */,
 				83B62F8A292E0D9100030808 /* WeatherService.swift */,
 				83B62F8C292E0FBF00030808 /* WeatherResponse.swift */,
+				83649E4429754BC900F7B47A /* WeatherSupport.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -216,9 +216,9 @@
 		83D9EDA92915095C0098F886 /* Traduction */ = {
 			isa = PBXGroup;
 			children = (
-				83649E4629754FBC00F7B47A /* LanguageConfiguration.swift */,
 				83E55A3E291BA1D500A38D3B /* TraductionService.swift */,
 				83E55A40291BA91900A38D3B /* TraductionResponse.swift */,
+				83649E4629754FBC00F7B47A /* LanguageConfiguration.swift */,
 			);
 			path = Traduction;
 			sourceTree = "<group>";

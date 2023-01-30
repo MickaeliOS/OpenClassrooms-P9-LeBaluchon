@@ -14,7 +14,7 @@ class ExchangeVC: UIViewController {
         setupInterface()
         displayLatestChangeRates()
     }
-    
+
     // MARK: - Outlets
     @IBOutlet weak var sourceAmount: UITextField!
     @IBOutlet weak var destinationAmount: UITextField!

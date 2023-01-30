@@ -11,7 +11,7 @@ class WeatherVC: UIViewController {
     // MARK: - Controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayWeather()
+        //displayWeather()
         setupLabels()
         setupInterface()
     }
@@ -47,7 +47,7 @@ class WeatherVC: UIViewController {
         // New York
         WeatherService.shared.getWeather(city: "New York") { success, tuple, error in
             if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
+                self.presentAlert(with: "An error occurred")
                 self.toggleActivityIndicator(shown: false)
                 return
             }
@@ -76,7 +76,7 @@ class WeatherVC: UIViewController {
             WeatherService.shared.getWeather(city: "Paris") { success, tuple, error in
                 self.toggleActivityIndicator(shown: false)
                 if error != nil {
-                    self.presentAlert(with: error!.localizedDescription)
+                    self.presentAlert(with: "An error occurred")
                     return
                 }
                 

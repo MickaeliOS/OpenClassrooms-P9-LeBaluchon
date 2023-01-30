@@ -12,7 +12,7 @@ class ExchangeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
-        displayLatestChangeRates()
+        //displayLatestChangeRates()
     }
 
     // MARK: - Outlets
@@ -75,7 +75,7 @@ class ExchangeVC: UIViewController {
         // EUR to USD
         ExchangeService.shared.getLatestChangeRate(from: "EUR", to: "USD") { success, result, error in
             if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
+                self.presentAlert(with: "An error occurred")
                 
                 // If the first call fails, it means it will never execute the second one and I need to
                 // hide the ActivityIndicator and put the button back
@@ -100,7 +100,7 @@ class ExchangeVC: UIViewController {
                 self.toggleActivityIndicator(shown: false)
 
                 if error != nil {
-                    self.presentAlert(with: error!.localizedDescription)
+                    self.presentAlert(with: "An error occurred")
                     return
                 }
                 

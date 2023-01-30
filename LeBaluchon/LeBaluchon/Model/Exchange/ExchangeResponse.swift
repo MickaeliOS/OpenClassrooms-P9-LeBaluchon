@@ -8,9 +8,9 @@
 import Foundation
 
 struct ExchangeResponse: Decodable {
-    var success: Bool
-    var timestamp: Int
-    var base: String
-    var date: String
-    var rates: [String:Double]?
+    let success: Bool
+    let timestamp: Int
+    let base: String
+    let date: String
+    let rates: [String:Double]?
 }

@@ -55,7 +55,7 @@ class TraductionVC: UIViewController {
         
         TraductionService.shared.getTraduction(source: source, target: destination, text: textToTranslate.text) { success, translatedText, error in
             if error != nil {
-                self.presentAlert(with: error!.localizedDescription)
+                self.presentAlert(with: "An error occurred")
                 return
             }
             

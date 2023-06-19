@@ -67,7 +67,6 @@ class ExchangeVC: UIViewController {
         }
     }
 
-    
     private func displayLatestChangeRates() {
         // I'm hidding the refresh button to prevent the user for multiple input
         toggleActivityIndicator(shown: true)

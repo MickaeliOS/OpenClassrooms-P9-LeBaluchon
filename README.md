@@ -15,6 +15,14 @@ In this project, we have learned a significant concept: API calls using URLSessi
 
 Discover the convenience and reliability of Le Baluchon today!
 
-<img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Exchange.png" width="200">
-<img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Traduction.png" width="200">
-<img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Weather.png" width="200">
+<p align="left">
+  <img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Exchange.png" width="200">
+</p>
+
+<p align="center">
+  <img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Traduction.png" width="200">
+</p>
+
+<p align="right">
+  <img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Weather.png" width="200">
+</p>

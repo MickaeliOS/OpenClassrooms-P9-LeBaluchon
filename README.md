@@ -16,7 +16,7 @@ In this project, we have learned a significant concept: API calls using URLSessi
 Discover the convenience and reliability of Le Baluchon today!
 
 <div align="center">
-  <h2> Exhange </h2>
+  <h2> Exchange </h2>
   <img src="https://github.com/MickaeliOS/OpenClassrooms-P9-LeBaluchon/blob/master/Divers/Exchange.png" width="200">
 </div>
 

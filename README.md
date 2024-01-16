@@ -14,6 +14,9 @@ Once you did that, you should create an Enum named APIKeys of type String and cr
 - googleTranslationKey
 - openWeatherMapKey
 
+
+## Welcome !
+
 Welcome to Le Baluchon, a sophisticated travel application that offers you a range of valuable features:
 
 1. Currency Exchange:
